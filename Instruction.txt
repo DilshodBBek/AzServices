@@ -1,0 +1,2 @@
+Hamma papkani ichiga projectlarni qo`shadi clean qilib Identity Example ga o`xshab
+Umumiy packagelarni  va toollarni (EF core ga o`xshagan) Common Applicationga qo`shasizlar
