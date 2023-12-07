@@ -10,4 +10,11 @@
     <ProjectReference Include="..\ServiceCatalog.Application\ServiceCatalog.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="ExternalServices\" />
+    <Folder Include="Services\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
 </Project>
