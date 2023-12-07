@@ -22,6 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payment", "Payment", "{C43C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notification", "Notification", "{5A153DF5-BF23-4042-A2E4-78E991A1F47B}"
 	ProjectSection(SolutionItems) = preProject
+		Servise_Db.txt = Servise_Db.txt
 		TextFile2.txt = TextFile2.txt
 	EndProjectSection
 EndProject
