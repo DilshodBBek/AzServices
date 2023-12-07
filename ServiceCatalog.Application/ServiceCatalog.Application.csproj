@@ -11,9 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Inrefaces\" />
     <Folder Include="ApplicationServices\" />
-    <Folder Include="Services\" />
+    <Folder Include="Inrefaces\" />
+    <Folder Include="Profiles\" />
+    <Folder Include="Services\Stadium\" />
   </ItemGroup>
 
 </Project>

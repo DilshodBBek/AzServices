@@ -13,8 +13,8 @@
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="ExternalServices\" />
-    <Folder Include="Services\" />
     <Folder Include="Repositories\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>
