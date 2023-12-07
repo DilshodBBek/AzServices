@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="DTO\Stadium\" />
-    <Folder Include="Entity\Common\" />
   </ItemGroup>
 
 </Project>
