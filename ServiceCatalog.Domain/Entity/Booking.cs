@@ -1,4 +1,5 @@
-﻿using ServiceCatalog.Domain.Entity.Stadium;
+﻿using ServiceCatalog.Domain.Entity.Common;
+using ServiceCatalog.Domain.Entity.Stadium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,6 @@ namespace ServiceCatalog.Domain.Entity
 
 		// Связь с категорией поля через общий интерфейс
 		public int FieldCategoryId { get; set; }
-		public ICategory FieldCategory { get; set; }
+		public Base FieldCategory { get; set; }
 	}
 }

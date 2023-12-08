@@ -19,7 +19,7 @@ namespace ServiceCatalog.Infrastructure.Data.Contex
         public AppDbContext(DbContextOptions<AppDbContext> db) : base(db) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)=>
-            optionsBuilder.UseNpgsql(_configuration.GetConnectionString("ShokirsDb"));
+            optionsBuilder.UseNpgsql(_configuration.GetConnectionString("JavlonsDb"));
 
         public DbSet<PlaystationArea> Playstations { get; set; }
     }
