@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <Folder Include="ApplicationServices\" />
-    <Folder Include="Inrefaces\" />
+    <Folder Include="Inrefaces\Stadium\" />
     <Folder Include="Profiles\" />
     <Folder Include="Services\Stadium\" />
   </ItemGroup>

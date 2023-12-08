@@ -8,5 +8,6 @@ namespace ServiceCatalog.Domain.Entity.Common
 {
 	public class Base
 	{
+
 	}
 }
