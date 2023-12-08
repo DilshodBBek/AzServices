@@ -22,7 +22,7 @@ namespace ServiceCatalog.Domain.Entity.Common
 
 
         //Время открытия и закрытия
-        public TimeOnly OpenTime { get; set; }
-        public TimeOnly CloseTime { get; set; }
+        public TimeSpan OpenTime { get; set; }
+        public TimeSpan CloseTime { get; set; }
     }
 }
