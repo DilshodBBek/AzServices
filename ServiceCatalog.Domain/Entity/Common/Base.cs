@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,7 +22,9 @@ namespace ServiceCatalog.Domain.Entity.Common
 
 
 		//Время открытия и закрытия
-		public TimeOnly OpenTime { get; set; }
-		public TimeOnly CloseTime { get; set; }
+		public TimeSpan OpenTime { get; set; }
+		public TimeSpan CloseTime { get; set; }
+
+		//public User user { get; set; }
 	}
 }
