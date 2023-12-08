@@ -15,3 +15,4 @@ namespace Identity.Domain.Entities
         public string LastName { get; set; }
     }
 }
+ 
