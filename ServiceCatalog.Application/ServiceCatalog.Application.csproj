@@ -13,8 +13,6 @@
 
   <ItemGroup>
     <Folder Include="ApplicationServices\" />
-    <Folder Include="Inrefaces\Playstation\" />
-    <Folder Include="Profiles\" />
     <Folder Include="Services\Playstation\" />
     <Folder Include="Services\Stadium\" />
   </ItemGroup>
