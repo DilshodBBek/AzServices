@@ -6,23 +6,30 @@ using System.Threading.Tasks;
 
 namespace ServiceCatalog.Domain.Entity.Stadium
 {
-	public class Field:ICategory
+	public class Field : ICategory
 	{
-		public int CategoryId { get; set; } = 1;
+		//public int CategoryId { get; set; } = 1;
+		//public int Id { get; set; }
+		//      public string Name { get; set; }
+		//public string Address { get; set; }
+		//public string Size { get; set; }
+		//public decimal Price { get; set; }
+		//public string Description { get; set; }
+		//public byte[] ImageData { get; set; }
+
+		//// TimeSpan.FromHours(10) + TimeSpan.FromMinutes(30);
+		//public TimeSpan OpeningTime { get; set; }
+		//public TimeSpan ClosingTime { get; set; }
+
+		////bronda bu boladi
+		////public List<bool> IsAvailable { get; set; }
 		public int Id { get; set; }
-        public string Name { get; set; }
-		public string Address { get; set; }
-		public string Size { get; set; }
-		public decimal Price { get; set; }
-		public string Description { get; set; }
-		public byte[] ImageData { get; set; }
-
-		// TimeSpan.FromHours(10) + TimeSpan.FromMinutes(30);
-		public TimeSpan OpeningTime { get; set; }
-		public TimeSpan ClosingTime { get; set; }
-		
-		//bronda bu boladi
-		//public List<bool> IsAvailable { get; set; }
-
+		public string Name { get; set; }
+		public int Location { get; set; }
+		public ICollection<byte[]> PhotoOrVideo { get; set; }
+		public string Descryption { get; set; }
+		public ICollection<(decimal, string)> Price { get; set; }
+		public TimeOnly OpenTime { get; set; }
+		public TimeOnly CloseTime { get; set; }
 	}
 }
