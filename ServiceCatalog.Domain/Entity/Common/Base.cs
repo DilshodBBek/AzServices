@@ -11,7 +11,7 @@ namespace ServiceCatalog.Domain.Entity.Common
 	{
 		public int Id { get; set; }
 		public string Name { get; set; } = string.Empty;
-		public int Location { get; set; }
+		public string Location { get; set; }
 		public ICollection<byte[]> PhotoOrVideo { get; set; } = new List<byte[]>();
 
 		//Немного информации о себе

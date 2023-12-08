@@ -17,9 +17,10 @@ namespace ServiceCatalog.Domain.Entity
 		
 
 		// Связь с категорией поля через общий интерфейс
-		public int FieldCategoryId { get; set; }
-		public Base FieldCategory { get; set; }
+		public int ServiceId { get; set; }
+		public Base Service { get; set; }
 
+		public int CategoryId { get; set; }
 
 	}
 }

@@ -2,6 +2,6 @@
 {
     public class BookingController
     {
-        public void BronningCategory( /* Category Id*/ /*User user*/);
+        //public void BronningCategory( /* Category Id*/ /*User user*/);
     }
 }

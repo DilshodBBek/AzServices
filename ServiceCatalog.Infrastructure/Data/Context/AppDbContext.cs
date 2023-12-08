@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Npgsql.Internal.Postgres;
 using ServiceCatalog.Domain.Entity.Playstation;
+using ServiceCatalog.Domain.Entity.Stadium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,5 +24,6 @@ namespace ServiceCatalog.Infrastructure.Data.Contex
             optionsBuilder.UseNpgsql(_configuration.GetConnectionString("JavlonsDb"));
 
         public DbSet<PlaystationArea> Playstations { get; set; }
+        public DbSet<Stadium> Stadiums { get; set; }
     }
 }
