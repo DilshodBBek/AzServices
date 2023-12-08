@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServiceCatalog.Domain.Entity.Common
+namespace ServiceCatalog.Domain.Entity
 {
-	public class Base
+	public interface ICategory
 	{
-
+		int CategoryId { get; set; }
 	}
 }
