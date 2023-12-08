@@ -10,15 +10,14 @@ namespace ServiceCatalog
 		public static void Main(string[] args)
 		{
 			var builder = WebApplication.CreateBuilder(args);
-
-            Logger logger = new LoggerConfiguration().
-                WriteTo.Console().MinimumLevel
-                .Information().WriteTo
-                .File(@"C:\Users\suoki\Desktop\ForMachingLearning\log.json").MinimumLevel.Information()
-                //.WriteTo.PostgreSQL("Host=::1;Port=5432;Database=postgres;User id=postgres;Password=adminadmin", "Logging", needAutoCreateTable: true).MinimumLevel
-                //.Information().WriteTo
-                //.Telegram(botToken: "6069174877:AAHlmFZOZQjWw3nNCQPbR34kNYWp4XCTSnU", "6318296969")
-                .CreateLogger();
+			//Logger logger = new LoggerConfiguration().
+   //             WriteTo.Console().MinimumLevel
+   //             .Information().WriteTo
+   //             .File(@"C:\Users\suoki\Desktop\ForMachingLearning\log.json").MinimumLevel.Information()
+   //             //.WriteTo.PostgreSQL("Host=::1;Port=5432;Database=postgres;User id=postgres;Password=adminadmin", "Logging", needAutoCreateTable: true).MinimumLevel
+   //             //.Information().WriteTo
+   //             //.Telegram(botToken: "6069174877:AAHlmFZOZQjWw3nNCQPbR34kNYWp4XCTSnU", "6318296969")
+   //             .CreateLogger();
             // Add services to the container.
 
             builder.Services.AddControllers();
