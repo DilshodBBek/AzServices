@@ -20,11 +20,8 @@ namespace ServiceCatalog.Domain.Entity.Common
 		//Цена и за сколько времени
 		public ICollection<(decimal, string)> Price { get; set; } = new List<(decimal, string)>();
 
-
-		//Время открытия и закрытия
-		public TimeSpan OpenTime { get; set; }
-		public TimeSpan CloseTime { get; set; }
-
-		//public User user { get; set; }
-	}
+        //Время открытия и закрытия
+        public TimeSpan OpenTime { get; set; }
+        public TimeSpan CloseTime { get; set; }
+    }
 }

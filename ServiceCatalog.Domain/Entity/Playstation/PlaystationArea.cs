@@ -1,4 +1,5 @@
 ﻿using ServiceCatalog.Domain.Entity.Common;
+using ServiceCatalog.Domain.State;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace ServiceCatalog.Domain.Entity.Playstation
     public class PlaystationArea:Base
     {
         public ICollection<string> GameNames { get; set; } = new List<string>();
+        public Category CategoryName { get; set; } = Category.Playstation;
     }
 }
