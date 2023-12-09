@@ -35,7 +35,7 @@ namespace ServiceCatalog.Controllers
             return BadRequest();
         }
         [HttpGet]
-        public async Task<IActionResult> GetAllPlaystation(int Id)
+        public async Task<IActionResult> GetAllPlaystation()
         {
             var playstations = await _service.GetAll();
             if (playstations.Count()>=1) return Ok(playstations);
