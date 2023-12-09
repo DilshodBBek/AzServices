@@ -14,7 +14,7 @@ namespace ServiceCatalog
 			Logger logger = new LoggerConfiguration().
 				WriteTo.Console().MinimumLevel
 				.Information().WriteTo
-				.File(@"C:\Users\suoki\Desktop\Real\ServiceCatalog\info\").MinimumLevel.Information()
+				.File(@"C:\Users\suoki\Desktop\Real\ServiceCatalog\TriggerFile\Logging.json").MinimumLevel.Information()
 				.WriteTo.PostgreSQL(builder.Configuration.GetConnectionString("ShokirsDb"), "Logging", needAutoCreateTable: true).MinimumLevel
 				.Information()
 				.CreateLogger();
