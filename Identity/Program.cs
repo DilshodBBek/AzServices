@@ -18,12 +18,12 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-string Connectionpath = @"../Application/Common.json";
-string connectionString = File.ReadAllText(Connectionpath);
-JObject json = JObject.Parse(connectionString);
-string defaultConnectionString = json["ConnectionStrings"]["DefaultConnection"].ToString();
+//string Connectionpath = @"../Application/Common.json";
+//string connectionString = File.ReadAllText(Connectionpath);
+//JObject json = JObject.Parse(connectionString);
+//string defaultConnectionString = json["ConnectionStrings"]["DefaultConnection"].ToString();
 
-builder.Services.AddDbContext<ApplicationDbcontext>(options => options.UseNpgsql(defaultConnectionString));
+builder.Services.AddDbContext<ApplicationDbcontext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbcontext>().AddDefaultTokenProviders();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>

@@ -6,7 +6,6 @@
     }
   },
   "AllowedHosts": "*",
-  "ConnectionStrings": { "DefaultConnection": "Server=::1;Port=5432;Database=RealProjectBase;user id=postgres;password=123456" },
   "JWTKey": {
     "ValidAudience": "https://localhost:7239",
     "ValidIssuer": "https://localhost:7239",
