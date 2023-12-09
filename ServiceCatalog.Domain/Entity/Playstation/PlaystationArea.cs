@@ -10,7 +10,6 @@ namespace ServiceCatalog.Domain.Entity.Playstation
 {
     public class PlaystationArea:Base
     {
-        public ICollection<string> GameNames { get; set; } = new List<string>();
         public int CategoryId { get; } = 1;
     }
 }

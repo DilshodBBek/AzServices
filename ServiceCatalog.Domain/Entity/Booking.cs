@@ -1,4 +1,5 @@
 ﻿using ServiceCatalog.Domain.Entity.Common;
+using ServiceCatalog.Domain.Entity.Playstation;
 using ServiceCatalog.Domain.Entity.Stadium;
 using System;
 using System.Collections.Generic;
@@ -13,14 +14,13 @@ namespace ServiceCatalog.Domain.Entity
 		public int Id { get; set; }
 		public DateTime BroneTime { get; set; }
 		public TimeSpan Duration { get; set; }
+		public string BronePhoneNumber { get; set; }
 
 		
 
 		// Связь с категорией поля через общий интерфейс
 		public int ServiceId { get; set; }
 		public Base Service { get; set; }
-
-		public int CategoryId { get; set; }
 
 	}
 }
