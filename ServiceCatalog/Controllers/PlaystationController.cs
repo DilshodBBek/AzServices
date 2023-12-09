@@ -4,6 +4,7 @@ using ServiceCatalog.Application.Inrefaces.Playstation;
 using ServiceCatalog.Domain.DTO.Playstation;
 using ServiceCatalog.Domain.Entity.Playstation;
 using System.ComponentModel;
+using System.Data;
 using System.Reflection.Metadata.Ecma335;
 
 namespace ServiceCatalog.Controllers
@@ -18,18 +19,42 @@ namespace ServiceCatalog.Controllers
             _mapper = mapper;
             _service =service;
         }
-        public async Task<string> CreatePlaystationArea(PlaystationCreateDTO obj)
+        [HttpPost]
+        public async Task<IActionResult> CreatePlaystation(PlaystationCreateDTO obj)
         {
             PlaystationArea play = _mapper.Map<PlaystationArea>(obj);
             var createdPlay=await _service.Create(play);
-            if (createdPlay) return "Created";
-            return "You cant create";
+            if (createdPlay) return Ok("Created");
+            return BadRequest("You cant create");
         }
-        public async Task<IActionResult> GetById(int Id)
+        [HttpGet]
+        public async Task<IActionResult> GetByIdPlaystation(int Id)
         {
-            var createdPlay = await _service.GetById(Id);
-            if (createdPlay!=null) return Ok(createdPlay);
-            return "You cant create";
+            var createdPlaystation = await _service.GetById(Id);
+            if (createdPlaystation != null) return Ok(createdPlaystation);
+            return BadRequest("You cant create");
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetAllPlaystation(int Id)
+        {
+            var playstations = await _service.GetAll();
+            if (playstations.Count()>=1) return Ok(playstations);
+            return BadRequest("Playstations empty");
+        }
+        [HttpDelete]
+        public async Task<IActionResult> DeletePlaystation(int Id)
+        {
+            var DeletePlaystation = await _service.Delete(Id);
+            if (DeletePlaystation) return Ok(DeletePlaystation);
+            return BadRequest("In Db not exist this object");
+        }
+        [HttpPut]
+        public async Task<IActionResult> UpdatePlaystation(PlaystationUpdateDTO obj)
+        {
+            var deleteObj= _mapper.Map<PlaystationArea>(obj);
+            var DeletePlaystation = await _service.Update(deleteObj);
+            if (DeletePlaystation) return Ok(DeletePlaystation);
+            return BadRequest("In Db not exist this object");
         }
     }
 }
