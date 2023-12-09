@@ -1,66 +1,64 @@
 ﻿using Identity.Application.Interfaces;
 using Identity.Domain.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Identity.Controllers
-{
-    [Route("api/[controller]")]
-    [ApiController]
-    public class AuthenticationController : ControllerBase
-    {
-        private readonly IAuthService _authService;
-        private readonly ILogger<AuthenticationController> _logger;
+namespace Identity.Controllers;
 
-        public AuthenticationController(IAuthService authService, ILogger<AuthenticationController> logger)
+[Route("api/[controller]")]
+[ApiController]
+public class AuthenticationController : ControllerBase
+{
+    private readonly IAuthService _authService;
+    private readonly ILogger<AuthenticationController> _logger;
+
+    public AuthenticationController(IAuthService authService, ILogger<AuthenticationController> logger)
+    {
+        _authService = authService;
+        _logger = logger;
+    }
+    [HttpPost]
+    [Route("login")]
+    public async Task<IActionResult> Login(LoginModel model)
+    {
+        try
         {
-            _authService = authService;
-            _logger = logger;
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("invalid playload");
+            }
+            var (status, message) = await _authService.Login(model);
+            if (status == 0)
+            {
+                return BadRequest(message);
+            }
+            return Ok(message);
         }
-        [HttpPost]
-        [Route("login")]
-        public async Task<IActionResult> Login(LoginModel model)
+        catch (Exception ex)
         {
-            try
-            {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest("invalid playload");
-                }
-                var (status, message) = await _authService.Login(model);
-                if (status == 0)
-                {
-                    return BadRequest(message);
-                }
-                return Ok(message);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex.Message);
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-            }
+            _logger.LogError(ex.Message);
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
         }
-        [HttpPost("Registration")]
-        public async Task<IActionResult> Register(RegisteredModel model)
+    }
+    [HttpPost("Registration")]
+    public async Task<IActionResult> Register(RegisteredModel model)
+    {
+        try
         {
-            try
+            if (!ModelState.IsValid)
             {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest("invalid payload");
-                }
-                var (status, message) = await _authService.Registration(model, UserRoles.Admin);
-                if (status == 0)
-                {
-                    return BadRequest(message);
-                }
-                return CreatedAtAction(nameof(Register), model);
+                return BadRequest("invalid payload");
             }
-            catch (Exception ex)
+            var (status, message) = await _authService.Registration(model, UserRoles.Admin);
+            if (status == 0)
             {
-                _logger.LogError(ex.Message);
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+                return BadRequest(message);
             }
+            return CreatedAtAction(nameof(Register), model);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex.Message);
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
         }
     }
 }
