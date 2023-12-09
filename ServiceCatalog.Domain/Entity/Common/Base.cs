@@ -23,5 +23,8 @@ namespace ServiceCatalog.Domain.Entity.Common
         //Время открытия и закрытия
         public TimeSpan OpenTime { get; set; }
         public TimeSpan CloseTime { get; set; }
+
+		public int UserId { get; set; }
+
     }
 }
