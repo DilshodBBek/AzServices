@@ -28,7 +28,7 @@ JObject json = JObject.Parse(connectionString);
 string defaultConnectionString = json["ConnectionStrings"]["DefaultConnection"].ToString();
 
 builder.Services.AddDbContext<ApplicationDbcontext>(options =>options.UseNpgsql(defaultConnectionString));
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbcontext>().AddDefaultTokenProviders(); var app = builder.Build();
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbcontext>().AddDefaultTokenProviders();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
@@ -56,7 +56,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
-
+var app=builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
