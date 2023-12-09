@@ -28,6 +28,7 @@ namespace CrudforMedicshop.infrastructure.Services
         public async Task<(int, string)> Login(LoginModel model)
         {
             var user = await _userManager.FindByNameAsync(model.Username);
+            var signinResult = await _signInManager.PasswordSignInAsync(user, model.Password, false, true);
             if (user == null)
             {
                 return (0, "invalid username");
