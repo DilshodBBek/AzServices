@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace ServiceCatalog.Domain.DTO.Stadium;
 
-namespace ServiceCatalog.Domain.DTO.Stadium
+public class StadiumCreateDTO
 {
-	internal class StadiumCreateDTO
-	{
-	}
+
 }

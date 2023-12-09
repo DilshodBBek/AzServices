@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace ServiceCatalog.Application.Inrefaces.Base;
 
-namespace ServiceCatalog.Application.Inrefaces.Base
+public interface IUpdateService<T>
 {
-    public interface IUpdateService<T>
-    {
-        public Task<bool> Update(T entity);
-    }
+    public Task<bool> Update(T entity);
 }

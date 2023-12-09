@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace ServiceCatalog.Domain.State;
 
-namespace ServiceCatalog.Domain.State
+public enum Category : byte
 {
-    public enum Category:byte
-    {
-        Stadium,
-        Playstation
-    }
+    Stadium,
+    Playstation
 }
