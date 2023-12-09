@@ -15,8 +15,10 @@ namespace ServiceCatalog.Domain.Entity
 		public DateTime BroneTime { get; set; }
 		public TimeSpan Duration { get; set; }
 		public string BronePhoneNumber { get; set; }
-
-		
+		//1=Waiting
+		//2=free
+		//3=Paid
+		public int BookingStatusId { get; set; }
 
 		// Связь с категорией поля через общий интерфейс
 		public int ServiceId { get; set; }
