@@ -14,6 +14,7 @@ namespace Payment.Domain.Entity
         public string CardNumber {  get; set; } 
 
         [RegularExpression(@"^(0[1-9]|1[0-2])\/\d{2}$", ErrorMessage = "Not a valid expiration date.")]
+        //salom laziz qondaye
         public string ExpirationDate { get; set; } 
     }
 }
