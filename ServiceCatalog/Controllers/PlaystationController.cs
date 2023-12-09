@@ -24,29 +24,29 @@ namespace ServiceCatalog.Controllers
         {
             PlaystationArea play = _mapper.Map<PlaystationArea>(obj);
             var createdPlay=await _service.Create(play);
-            if (createdPlay) return Ok("Created");
-            return BadRequest("You cant create");
+            if (createdPlay) return Ok();
+            return BadRequest();
         }
         [HttpGet]
         public async Task<IActionResult> GetByIdPlaystation(int Id)
         {
             var createdPlaystation = await _service.GetById(Id);
             if (createdPlaystation != null) return Ok(createdPlaystation);
-            return BadRequest("You cant create");
+            return BadRequest();
         }
         [HttpGet]
         public async Task<IActionResult> GetAllPlaystation(int Id)
         {
             var playstations = await _service.GetAll();
             if (playstations.Count()>=1) return Ok(playstations);
-            return BadRequest("Playstations empty");
+            return BadRequest();
         }
         [HttpDelete]
         public async Task<IActionResult> DeletePlaystation(int Id)
         {
             var DeletePlaystation = await _service.Delete(Id);
             if (DeletePlaystation) return Ok(DeletePlaystation);
-            return BadRequest("In Db not exist this object");
+            return BadRequest();
         }
         [HttpPut]
         public async Task<IActionResult> UpdatePlaystation(PlaystationUpdateDTO obj)
@@ -54,7 +54,7 @@ namespace ServiceCatalog.Controllers
             var deleteObj= _mapper.Map<PlaystationArea>(obj);
             var DeletePlaystation = await _service.Update(deleteObj);
             if (DeletePlaystation) return Ok(DeletePlaystation);
-            return BadRequest("In Db not exist this object");
+            return BadRequest();
         }
     }
 }
