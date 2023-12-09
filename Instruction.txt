@@ -1,2 +1,4 @@
 Hamma papkani ichiga projectlarni qo`shadi clean qilib Identity Example ga o`xshab
 Umumiy packagelarni  va toollarni (EF core ga o`xshagan) Common Applicationga qo`shasizlar
+Bitta Configuration va Jwtlar uchun Common degan Json File ochdim
+Common ga Tools va Postgresql packagelarini yukladim
