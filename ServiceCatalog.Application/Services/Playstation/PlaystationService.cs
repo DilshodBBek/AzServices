@@ -1,14 +1,7 @@
 ﻿using ServiceCatalog.Application.Inrefaces.Playstation;
 using ServiceCatalog.Domain.Entity.Playstation;
-using ServiceCatalog.Infrastructure.Data.Contex;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ServiceCatalog.Infrastructure.Services.Playstation
+namespace ServiceCatalog.Application.Services.Playstation
 {
     public class PlaystationService : ICRUDServicePlaystationArea
     {

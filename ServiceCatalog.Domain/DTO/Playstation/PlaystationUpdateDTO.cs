@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ServiceCatalog.Domain.DTO.Playstation
 {
-    internal class PlaystationUpdateDTO
+    public class PlaystationUpdateDTO
     {
     }
 }

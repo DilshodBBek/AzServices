@@ -10,8 +10,10 @@ namespace ServiceCatalog.Domain.Entity.Common
 	{
 		public int Id { get; set; }
 		public string Name { get; set; } = string.Empty;
-		public int Location { get; set; }
-		public ICollection<byte[]> PhotoOrVideo { get; set; } = new List<byte[]>();
+		public string Location { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string PhoneNumber { get; set; } = string.Empty;
+        public ICollection<byte[]> PhotoOrVideo { get; set; } = new List<byte[]>();
 
 		//Немного информации о себе
 		public string Descryption { get; set; } = string.Empty;

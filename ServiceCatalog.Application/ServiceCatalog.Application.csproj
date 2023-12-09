@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <Folder Include="ApplicationServices\" />
-    <Folder Include="Services\Playstation\" />
     <Folder Include="Services\Stadium\" />
   </ItemGroup>
 

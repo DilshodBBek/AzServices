@@ -19,8 +19,8 @@ namespace ServiceCatalog.Infrastructure.Repositories.Playstation
         }
         public async Task<bool> Create(PlaystationArea obj)
         {
-            _db.Playstations.Add(obj);
-            _db.SaveChanges();
+           await _db.Playstations.AddAsync(obj);
+            await _db.SaveChangesAsync();
             return true;
         }
 

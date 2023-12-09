@@ -14,9 +14,8 @@ namespace ServiceCatalog
 				WriteTo.Console().MinimumLevel
 				.Information().WriteTo
 				.File(@"C:\Users\suoki\Desktop\ForMachingLearning\log.json").MinimumLevel.Information()
-				.WriteTo.PostgreSQL(builder.Configuration.GetConnectionString(), "Logging", needAutoCreateTable: true).MinimumLevel
-				.Information().WriteTo
-				.Telegram(botToken: "6069174877:AAHlmFZOZQjWw3nNCQPbR34kNYWp4XCTSnU", "6318296969")
+				.WriteTo.PostgreSQL(builder.Configuration.GetConnectionString("ShokirsDb"), "Logging", needAutoCreateTable: true).MinimumLevel
+				.Information()
 				.CreateLogger();
 
 		   builder.Services.AddControllers();
