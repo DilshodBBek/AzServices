@@ -13,14 +13,16 @@ namespace CrudforMedicshop.infrastructure.Services
     public class AuthService : IAuthService
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
 
-        public AuthService(IConfiguration configuration, RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
+        public AuthService(IConfiguration configuration, RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             _configuration = configuration;
             _roleManager = roleManager;
             _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         public async Task<(int, string)> Login(LoginModel model)
@@ -98,6 +100,11 @@ namespace CrudforMedicshop.infrastructure.Services
                 await _userManager.AddToRoleAsync(user, role);
             }
             return (1, "User is Created Successfully!");
+        }
+
+        public async Task Logout()
+        {
+             await _signInManager.SignOutAsync();
         }
     }
 }
