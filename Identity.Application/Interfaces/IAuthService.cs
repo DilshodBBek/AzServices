@@ -11,5 +11,6 @@ namespace Identity.Application.Interfaces
     {
         Task<(int, string)> Registration(RegisteredModel model, string role);
         Task<(int, string)> Login(LoginModel model);
+        Task Logout();
     }
 }
