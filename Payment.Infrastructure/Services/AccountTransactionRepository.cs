@@ -68,5 +68,5 @@ namespace Payment.Infrastructure.Services
 		//		}
 		//	}
 		//}
-	} 
+	}
 }
