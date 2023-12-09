@@ -11,15 +11,16 @@ namespace ServiceCatalog.Domain.Entity
 	public class Booking
 	{
 		public int Id { get; set; }
-		public DateTime StartTime { get; set; }
-		public DateTime EndTime { get; set; }
+		public DateTime BroneTime { get; set; }
+		public TimeSpan Duration { get; set; }
 
-		// Связь с полем, которое забронировано
-		public int FieldId { get; set; }
-		public Field Field { get; set; }
+		
 
 		// Связь с категорией поля через общий интерфейс
-		public int FieldCategoryId { get; set; }
-		public Base FieldCategory { get; set; }
+		public int ServiceId { get; set; }
+		public Base Service { get; set; }
+
+		public int CategoryId { get; set; }
+
 	}
 }

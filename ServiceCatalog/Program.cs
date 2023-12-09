@@ -10,10 +10,11 @@ namespace ServiceCatalog
 		public static void Main(string[] args)
 		{
 			var builder = WebApplication.CreateBuilder(args);
+
 			Logger logger = new LoggerConfiguration().
 				WriteTo.Console().MinimumLevel
 				.Information().WriteTo
-				.File(@"C:\Users\suoki\Desktop\ForMachingLearning\log.json").MinimumLevel.Information()
+				.File(@"C:\Users\suoki\Desktop\Real\ServiceCatalog\info\").MinimumLevel.Information()
 				.WriteTo.PostgreSQL(builder.Configuration.GetConnectionString("ShokirsDb"), "Logging", needAutoCreateTable: true).MinimumLevel
 				.Information()
 				.CreateLogger();
