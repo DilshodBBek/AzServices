@@ -1,4 +1,4 @@
-namespace Identity;
+namespace Payment.UI;
 
 public class WeatherForecast
 {

@@ -1,0 +1,16 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": { "DefaultConnection": "Server=::1;Port=5432;Database=RealProjectBase;user id=postgres;password=123456" },
+  "JWTKey": {
+    "ValidAudience": "https://localhost:7239",
+    "ValidIssuer": "https://localhost:7239",
+    "TokenExpiryTimeInHour": "3",
+    "Secret": "asdadasdmlvkjalksjajdwkdjoqiiashcnakscnlakschioahsanc"
+  }
+}
