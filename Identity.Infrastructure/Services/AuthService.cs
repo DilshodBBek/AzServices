@@ -80,7 +80,6 @@ public class AuthService : IAuthService
         ApplicationUser user = new()
         {
             Email = model.Email,
-            SecurityStamp = Guid.NewGuid().ToString(),
             UserName = model.Username,
             FirstName = model.Firstname,
             LastName = model.Lastname,
