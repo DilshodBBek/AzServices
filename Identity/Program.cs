@@ -1,15 +1,14 @@
-using CrudforMedicshop.infrastructure.Services;
 using Identity.Application.Interfaces;
 using Identity.Domain.Entities;
 using Identity.ExceptionHandler;
-using Identity.Infrastructure.Dbcontext;
+using Identity.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Linq;
 using System.Text;
-
+using Identity.Application.Mapper;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -18,14 +17,16 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-string Connectionpath = @"../Application/Common.json";
-string connectionString = File.ReadAllText(Connectionpath);
-JObject json = JObject.Parse(connectionString);
-string defaultConnectionString = json["ConnectionStrings"]["DefaultConnection"].ToString();
+//string Connectionpath = @"../Application/Common.json";
+//string connectionString = File.ReadAllText(Connectionpath);
+//JObject json = JObject.Parse(connectionString);
+//string defaultConnectionString = json["ConnectionStrings"]["DefaultConnection"].ToString();
 
-builder.Services.AddDbContext<ApplicationDbcontext>(options => options.UseNpgsql(defaultConnectionString));
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbcontext>().AddDefaultTokenProviders();
-builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddDbContext<ApplicationDbcontext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddIdentity<ApplicationUser, Role>().AddEntityFrameworkStores<ApplicationDbcontext>().AddDefaultTokenProviders();
+builder.Services.AddScoped<IAuthService,AuthService>();
+builder.Services.AddScoped<ITokenService,TokenService>();
+builder.Services.addmapping();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.SaveToken = true;

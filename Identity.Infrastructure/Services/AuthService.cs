@@ -1,109 +1,147 @@
-﻿using Identity.Application.Interfaces;
+﻿using Application;
+using AutoMapper;
+using Identity.Application.Interfaces;
 using Identity.Domain.Entities;
 using Identity.Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
-
-namespace CrudforMedicshop.infrastructure.Services;
+namespace Identity.Infrastructure.Services
+{
 
 public class AuthService : IAuthService
 {
-    private readonly UserManager<ApplicationUser> _userManager;
-    private readonly SignInManager<ApplicationUser> _signInManager;
-    private readonly RoleManager<IdentityRole> _roleManager;
+    private readonly ITokenService _tokenService;
+    private readonly ApplicationDbcontext _mydbcontext;
+    private readonly IMapper _mapper;
     private readonly IConfiguration _configuration;
+    private readonly int _refreshTokenLifetime;
+    private readonly UserManager<ApplicationUser> _userManager;
+    private readonly  RoleManager<Role> _roleManager;
 
-    public AuthService(IConfiguration configuration, RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+
+     public AuthService(ITokenService tokenService, ApplicationDbcontext mydbcontext, IMapper mapper, IConfiguration configuration, int refreshTokenLifetime)
     {
+        _tokenService = tokenService;
+        _mydbcontext = mydbcontext;
+        _mapper = mapper;
         _configuration = configuration;
-        _roleManager = roleManager;
-        _userManager = userManager;
-        _signInManager = signInManager;
+        _refreshTokenLifetime = int.Parse(_configuration["JWTKey:RefreshTokenValidityInMinutes"]);
     }
 
-    public async Task<(int, string)> Login(LoginModel model)
+    public async Task<bool> IsValidRefreshToken(string RefreshToken, int userid)
     {
-        var user = await _userManager.FindByNameAsync(model.Username);
-        var signinResult = await _signInManager.PasswordSignInAsync(user, model.Password, false, true);
-        if (user == null)
+        var res = _mydbcontext.RefreshTokens.Where(x => x.UserId.Equals(userid) && x.RefreshTokenValue.Equals(RefreshToken));
+        RefreshToken? refreshTokenEntity;
+        if (res.Count() != 1)
         {
-            return (0, "invalid username");
+            return false;
         }
-        if (!await _userManager.CheckPasswordAsync(user, model.Password))
+        refreshTokenEntity = res.First();
+        if (refreshTokenEntity.ExpireTime < DateTime.Now)
         {
-            return (0, "invalid Password");
+            return false;
         }
-        var userroles = await _userManager.GetRolesAsync(user);
-        var authClaims = new List<Claim>
-        {
-            new Claim(ClaimTypes.Name,user.UserName),
-            new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString())
-        };
-        foreach (var userrole in userroles)
-        {
-            authClaims.Add(new Claim(ClaimTypes.Role, userrole));
-        }
-        string token = Generatetoken(authClaims);
-        return (1, token);
+        return true;
+
     }
 
-    private string Generatetoken(IEnumerable<Claim> authClaims)
+    public async Task<ResponseModelForall<Token>> LoginAsync(Credential credential)
     {
-        var authsigningkey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWTKey:Secret"]));
-        var TokenExpiryTimeInHour = Convert.ToInt64(_configuration["JWTKey:TokenExpiryTimeInHour"]);
-        var TokenDescriptor = new SecurityTokenDescriptor
+        ApplicationUser user = await _userManager.FindByNameAsync(credential.Username);
+        if (user != null && await _userManager.CheckPasswordAsync(user, credential.Password))
         {
-            Audience = _configuration["JWTKey:ValidAudience"],
-            Issuer = _configuration["JWTKey:ValidIssuer"],
-            Expires = DateTime.UtcNow.AddMinutes(1),
-            SigningCredentials = new SigningCredentials(authsigningkey, SecurityAlgorithms.HmacSha256),
-            Subject = new ClaimsIdentity(authClaims)
+          Token token = await _tokenService.GenerateTokenAsync(user);
+          bool isSuccess = await SaveRefreshToken(token.RefreshToken, user);
+          return isSuccess ? new(token) : new("Failed to save refresh token");
+        }
+            else
+            {
+                return new("User not found or password is incorrect", 404);
+            }
+        }
 
-        };
-        var tokenHandler = new JwtSecurityTokenHandler();
-        var token = tokenHandler.CreateToken(TokenDescriptor);
-        return tokenHandler.WriteToken(token);
+    public async Task<ResponseModelForall<Token>> RefreshTokenAsync(Token token) { 
+        ApplicationUser user = await _tokenService.GetClaimsFromExpiredToken(token.AccessTokenk);
+        if (!await IsValidRefreshToken(token.RefreshToken, user.Id))
+        {
+            return new("refresh token is invalid");
+        }
+        Token tokennew = await _tokenService.GenerateTokenAsync(user);
+        bool issuccess = await SaveRefreshToken(tokennew.RefreshToken, user);
+        return issuccess ? new(tokennew) : new("Failed");
     }
 
-    public async Task<(int, string)> Registration(RegisteredModel model, string role)
+    public async Task<ResponseModelForall<(Token, ApplicationUser)>> RegisterAsync(RegisteredModel model)
     {
-        var UserExists = await _userManager.FindByNameAsync(model.Username);
-
-        if (UserExists != null)
+        ApplicationUser user = _mapper.Map<ApplicationUser>(model);
+        var isExistuser = _userManager.FindByNameAsync(model.Username);
+        if (isExistuser! ==null)
         {
-            return (0, "User is Already exist");
+            return new("user already exist");
         }
-        ApplicationUser user = new()
-        {
-            Email = model.Email,
-            UserName = model.Username,
-            FirstName = model.Firstname,
-            LastName = model.Lastname,
-        };
         var CreatedUserResult = await _userManager.CreateAsync(user, model.Password);
-
-        Console.WriteLine(CreatedUserResult);
-        if (!CreatedUserResult.Succeeded)
+      if(!CreatedUserResult.Succeeded)
         {
-            return (0, "UserCreation is Failed,please Check your user details and try again");
+                return new("user creation failed");
         }
-        if (!await _roleManager.RoleExistsAsync(role))
-        {
-            await _roleManager.CreateAsync(new IdentityRole(role));
-        }
-        if (await _roleManager.RoleExistsAsync(role))
-        {
-            await _userManager.AddToRoleAsync(user, role);
-        }
-        return (1, "User is Created Successfully!");
+        Token token = await _tokenService.GenerateTokenAsync(user);
+        bool issuccess = await SaveRefreshToken(token.RefreshToken, user);
+        return issuccess ? new((token, user)) : new("failed");
     }
-
-    public async Task Logout()
+    public string ComputeSha256hash(string input)
     {
-        await _signInManager.SignOutAsync();
+        using (var sha256 = SHA256.Create())
+        {
+
+            byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+            byte[] hashBytes = sha256.ComputeHash(inputBytes);
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < hashBytes.Length; i++)
+            {
+                builder.Append(hashBytes[i].ToString("x2"));
+            }
+
+            return builder.ToString();
+        }
     }
+
+    public async Task<bool> SaveRefreshToken(string refreshToken, ApplicationUser user)
+    {
+        if (string.IsNullOrEmpty(refreshToken))
+        {
+            return false;
+        }
+        RefreshToken? refreshTokenEntity;
+        var res = _mydbcontext.RefreshTokens.Where(x => x.UserId.Equals(user.Id) && x.RefreshTokenValue.Equals(refreshToken));
+        if (res.Count() == 0)
+        {
+            refreshTokenEntity = new()
+            {
+                ExpireTime = DateTime.Now.AddMinutes(_refreshTokenLifetime),
+                UserId = user.Id,
+                RefreshTokenValue = refreshToken
+            };
+            await _mydbcontext.RefreshTokens.AddAsync(refreshTokenEntity);
+
+        }
+        else if (res.Count() == 1)
+        {
+            refreshTokenEntity = res.First();
+            refreshTokenEntity.RefreshTokenValue = refreshToken;
+            refreshTokenEntity.ExpireTime = DateTime.Now.AddMinutes(_refreshTokenLifetime);
+            _mydbcontext.RefreshTokens.Update(refreshTokenEntity);
+        }
+
+        else
+        {
+            return false;
+        }
+
+
+        int rows = await _mydbcontext.SaveChangesAsync();
+        return rows > 0;
+    }
+}
 }

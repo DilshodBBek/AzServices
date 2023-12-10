@@ -2,7 +2,7 @@
 
 namespace Identity.Domain.Models;
 
-public class LoginModel
+public class Credential
 {
     [Required(ErrorMessage = "Foydalanuvchi nomini kiriting")]
     public string? Username { get; set; }

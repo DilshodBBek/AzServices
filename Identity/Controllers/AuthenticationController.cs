@@ -1,6 +1,12 @@
-﻿using Identity.Application.Interfaces;
+﻿using Application;
+using Identity.Application.Interfaces;
+using Identity.Domain.Entities;
 using Identity.Domain.Models;
+using Identity.Infrastructure.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SP.Domain.Models;
+using System.Net;
 
 namespace Identity.Controllers;
 
@@ -10,55 +16,29 @@ public class AuthenticationController : ControllerBase
 {
     private readonly IAuthService _authService;
     private readonly ILogger<AuthenticationController> _logger;
+    private readonly AuthService _authservice;
 
-    public AuthenticationController(IAuthService authService, ILogger<AuthenticationController> logger)
+    public AuthenticationController(IAuthService authService, ILogger<AuthenticationController> logger, AuthService authservice)
     {
         _authService = authService;
         _logger = logger;
+        _authservice = authservice;
     }
     [HttpPost]
     [Route("login")]
-    public async Task<IActionResult> Login(LoginModel model)
+    public async Task<ResponseModelForall<Token>> Login(Credential model)
     {
-        try
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("invalid playload");
-            }
-            var (status, message) = await _authService.Login(model);
-            if (status == 0)
-            {
-                return BadRequest(message);
-            }
-            return Ok(message);
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex.Message);
-            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-        }
+        return await _authservice.LoginAsync(model);
     }
     [HttpPost("Registration")]
-    public async Task<IActionResult> Register(RegisteredModel model)
+    public async Task<ResponseModelForall<(Token, ApplicationUser)>> Register(RegisteredModel model)
     {
-        try
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("invalid payload");
-            }
-            var (status, message) = await _authService.Registration(model, UserRoles.Admin);
-            if (status == 0)
-            {
-                return BadRequest(message);
-            }
-            return CreatedAtAction(nameof(Register), model);
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex.Message);
-            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-        }
+        return await _authservice.RegisterAsync(model);
+    }
+    [HttpPost("RefreshToken")]
+    [AllowAnonymous]
+    public async Task<ResponseModelForall<Token>> RefreshToken(Token token)
+    {
+        return await _authservice.RefreshTokenAsync(token);
     }
 }

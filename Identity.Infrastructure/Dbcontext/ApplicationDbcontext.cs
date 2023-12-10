@@ -1,17 +1,27 @@
-﻿using Identity.Domain.Entities;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Security;
 
-namespace Identity.Infrastructure.Dbcontext;
-
-public class ApplicationDbcontext : IdentityDbContext<ApplicationUser>
+namespace Identity.Domain.Entities
 {
-    public ApplicationDbcontext()
+    public class ApplicationDbcontext : IdentityDbContext<ApplicationUser,Role,int>
     {
+        public DbSet<permission> Permissions { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
+        public ApplicationDbcontext(DbContextOptions<ApplicationDbcontext> options)
+            : base(options)
+        {
+        }
 
-    }
-    public ApplicationDbcontext(DbContextOptions<ApplicationDbcontext> options) : base(options)
-    {
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
 
+        //    modelBuilder.Entity<Role>()
+        //        .HasMany(r => r.Permissions)
+        //        .WithOne()
+        //        .HasForeignKey(rp => rp.roles)
+        //        .IsRequired();
+        //}
     }
 }
