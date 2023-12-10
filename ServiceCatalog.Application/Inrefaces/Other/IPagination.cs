@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServiceCatalog.Domain.DTO.Playstation
+namespace ServiceCatalog.Application.Inrefaces.Other
 {
-    public class PlaystationGetDTO
+    public interface IPagination <T>
     {
+        public IEnumerable<T> GetAll();
     }
 }

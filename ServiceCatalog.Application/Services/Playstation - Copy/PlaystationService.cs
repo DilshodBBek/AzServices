@@ -4,11 +4,11 @@ using ServiceCatalog.Domain.Entity.Playstation;
 
 namespace ServiceCatalog.Application.Services.Playstation
 {
-    public class PlaystationService : ICRUDServicePlaystationArea
+    public class PlaystationService : IServicePlaystationArea
     {
-        private readonly ICRUDRepositoryPlaystationArea _service;
+        private readonly IRepositoryPlaystationArea _service;
 
-        public PlaystationService(ICRUDRepositoryPlaystationArea service)
+        public PlaystationService(IRepositoryPlaystationArea service)
         {
             _service=service;
         }

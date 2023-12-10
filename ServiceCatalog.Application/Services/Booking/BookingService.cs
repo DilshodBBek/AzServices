@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace ServiceCatalog.Application.Services.Booking
 {
-	public class BookingService : ICRUDRepositoryBooking
-	{
-		private readonly ICRUDRepositoryBooking _bookingRepository;
-        public BookingService(ICRUDRepositoryBooking cRUDRepositoryBooking)
+    public class BookingService : IServiceBooking
+    {
+		private readonly IRepositoryBooking _bookingRepository;
+        public BookingService(IRepositoryBooking cRUDRepositoryBooking)
         {
             _bookingRepository = cRUDRepositoryBooking;
         }
-        public Task<bool> Create(Domain.Entity.Booking obj)
+        public Task<bool> Create(Domain.Entity.Booking.Booking obj)
 		{
 			var res = _bookingRepository.Create(obj);
 			return res;
@@ -26,19 +26,19 @@ namespace ServiceCatalog.Application.Services.Booking
 			return res;
 		}
 
-		public Task<IEnumerable<Domain.Entity.Booking>> GetAll()
+		public Task<IEnumerable<Domain.Entity.Booking.Booking>> GetAll()
 		{
 			var res = _bookingRepository.GetAll();
 			return res;
 		}
 
-		public Task<Domain.Entity.Booking> GetById(int Id)
+		public Task<Domain.Entity.Booking.Booking> GetById(int Id)
 		{
 			var res = _bookingRepository.GetById(Id);
 			return res;
 		}
 
-		public Task<bool> Update(Domain.Entity.Booking entity)
+		public Task<bool> Update(Domain.Entity.Booking.Booking entity)
 		{
 			var res = _bookingRepository.Update(entity);
 			return res;

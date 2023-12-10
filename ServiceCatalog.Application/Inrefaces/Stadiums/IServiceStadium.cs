@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ServiceCatalog.Application.Inrefaces.Stadiums
 {
-	public interface ICRUDServiceStadium:
+	public interface IServiceStadium:
 		ICreateService<PlaystationArea>,
 		IUpdateService<PlaystationArea>,
 		IGetByIdService<PlaystationArea>,

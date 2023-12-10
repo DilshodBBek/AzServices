@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using ServiceCatalog.Application.Inrefaces.Playstation;
 using ServiceCatalog.Domain.DTO.Playstation;
-using ServiceCatalog.Domain.Entity;
 using ServiceCatalog.Domain.Entity.Playstation;
+using ServiceCatalog.Domain.Entity.ResponseModel;
 using System.ComponentModel;
 using System.Data;
 using System.Net;
@@ -14,9 +15,9 @@ namespace ServiceCatalog.Controllers
     [Route("api/[controller]/[action]")]
     public class PlaystationAreaController:ControllerBase
     {
-        private readonly ICRUDServicePlaystationArea _service;
+        private readonly IServicePlaystationArea _service;
         private readonly IMapper  _mapper;
-        public PlaystationAreaController(ICRUDServicePlaystationArea service, IMapper mapper)
+        public PlaystationAreaController(IServicePlaystationArea service, IMapper mapper)
         {
             _mapper = mapper;
             _service =service;
@@ -57,6 +58,17 @@ namespace ServiceCatalog.Controllers
             bool UpdatePlaystation = await _service.Update(deleteObj);
             if (UpdatePlaystation) return new(UpdatePlaystation);
             return new(UpdatePlaystation, HttpStatusCode.Conflict);
+        }
+        [HttpGet]
+        public async Task<ResponseModel<IEnumerable<PlaystationArea>>> GetPlaystationPage(int page,int pageSize)
+        {
+            var Playstations= await _service.GetAll();
+            var PaginatedList= Playstations
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToList();
+            if (PaginatedList.Count < 1) return new("This page is empty",HttpStatusCode.BadGateway);
+            return new(PaginatedList,HttpStatusCode.Accepted);
         }
     }
 }

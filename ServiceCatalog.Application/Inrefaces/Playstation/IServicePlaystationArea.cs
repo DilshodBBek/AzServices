@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ServiceCatalog.Application.Inrefaces.Playstation
 {
-    public interface ICRUDRepositoryPlaystationArea:
+    public interface IServicePlaystationArea : 
         ICreateService<PlaystationArea>,
         IUpdateService<PlaystationArea>,
         IGetByIdService<PlaystationArea>,

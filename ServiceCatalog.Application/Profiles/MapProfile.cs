@@ -15,7 +15,7 @@ namespace ServiceCatalog.Application.Profiles
         public MapProfile()
         {
             CreateMap<PlaystationCreateDTO, PlaystationArea>();
-            //CreateMap<PlaystationUp, PlaystationArea>().
+            CreateMap<PlaystationUpdateDTO, PlaystationArea>();
         }
     }
 }

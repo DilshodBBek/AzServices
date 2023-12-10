@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ServiceCatalog.Infrastructure.Repositories.Playstation
 {
-    public class PlaystationRepository : ICRUDRepositoryPlaystationArea
+    public class PlaystationRepository : IRepositoryPlaystationArea
     {
         private readonly AppDbContext _db;
         public PlaystationRepository(AppDbContext db)

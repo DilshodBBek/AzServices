@@ -17,9 +17,6 @@ namespace ServiceCatalog.Domain.DTO.Playstation
         //Немного информации о себе
         public string Descryption { get; set; } = string.Empty;
 
-        //Цена и за сколько времени
-        public ICollection<(decimal, string)> Price { get; set; } = new List<(decimal, string)>();
-
         //Время открытия и закрытия
         public TimeSpan OpenTime { get; set; }
         public TimeSpan CloseTime { get; set; }
