@@ -21,7 +21,6 @@ builder.Services.AddSwaggerGen();
 //string connectionString = File.ReadAllText(Connectionpath);
 //JObject json = JObject.Parse(connectionString);
 //string defaultConnectionString = json["ConnectionStrings"]["DefaultConnection"].ToString();
-
 builder.Services.AddDbContext<ApplicationDbcontext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddIdentity<ApplicationUser, Role>().AddEntityFrameworkStores<ApplicationDbcontext>().AddDefaultTokenProviders();
 builder.Services.AddScoped<IAuthService,AuthService>();
