@@ -2,15 +2,17 @@
 using Microsoft.AspNetCore.Mvc;
 using ServiceCatalog.Application.Inrefaces.Playstation;
 using ServiceCatalog.Domain.DTO.Playstation;
+using ServiceCatalog.Domain.Entity;
 using ServiceCatalog.Domain.Entity.Playstation;
 using System.ComponentModel;
 using System.Data;
+using System.Net;
 using System.Reflection.Metadata.Ecma335;
 
 namespace ServiceCatalog.Controllers
 {
     [Route("api/[controller]/[action]")]
-    public class PlaystationAreaController:Controller
+    public class PlaystationAreaController:ControllerBase
     {
         private readonly ICRUDServicePlaystationArea _service;
         private readonly IMapper  _mapper;
@@ -42,19 +44,19 @@ namespace ServiceCatalog.Controllers
             return BadRequest();
         }
         [HttpDelete]
-        public async Task<IActionResult> DeletePlaystation(int Id)
+        public async Task<ResponseModel<bool>> DeletePlaystation(int Id)
         {
             var DeletePlaystation = await _service.Delete(Id);
-            if (DeletePlaystation) return Ok(DeletePlaystation);
-            return BadRequest();
+            if (DeletePlaystation) return new(DeletePlaystation,HttpStatusCode.Accepted);
+            return new(DeletePlaystation, HttpStatusCode.BadRequest);
         }
         [HttpPut]
-        public async Task<IActionResult> UpdatePlaystation(PlaystationUpdateDTO obj)
+        public async Task<ResponseModel<bool>> UpdatePlaystation(PlaystationUpdateDTO obj)
         {
             var deleteObj= _mapper.Map<PlaystationArea>(obj);
-            var DeletePlaystation = await _service.Update(deleteObj);
-            if (DeletePlaystation) return Ok(DeletePlaystation);
-            return BadRequest();
+            bool UpdatePlaystation = await _service.Update(deleteObj);
+            if (UpdatePlaystation) return new(UpdatePlaystation);
+            return new(UpdatePlaystation, HttpStatusCode.Conflict);
         }
     }
 }
