@@ -19,7 +19,7 @@ namespace ServiceCatalog.Infrastructure.Repositories
 		{
 			_db = db;
 		}
-		public async List<Cabin> GetStatus(int CabinaId)
+		public /*async*/ List<Cabin> GetStatus(int CabinaId)
 		{
 			var cabina = _db.Cabins.Include(x=>x.BroneStatuses).FirstOrDefault(x => x.Id == CabinaId);
 			List<Domain.Entity.Common.BroneStatus> status = cabina.BroneStatuses;
@@ -48,6 +48,7 @@ namespace ServiceCatalog.Infrastructure.Repositories
 			//	//DateTime
 			//	item.TimeDiapazonId
 			//}
+			return null;
 		}
 	}
 }
