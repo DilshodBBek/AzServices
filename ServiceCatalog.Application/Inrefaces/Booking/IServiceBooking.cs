@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 namespace ServiceCatalog.Application.Inrefaces.Booking
 {
     public interface IServiceBooking : 
-        ICreateService<Domain.Entity.Booking.Booking>,
-        IUpdateService<Domain.Entity.Booking.Booking>,
-        IGetByIdService<Domain.Entity.Booking.Booking>,
+        ICreateService<Domain.Entity.Booking.BookingPlaystation>,
+        IUpdateService<Domain.Entity.Booking.BookingPlaystation>,
+        IGetByIdService<Domain.Entity.Booking.BookingPlaystation>,
         IDeleteService,
-        IGetAllService<Domain.Entity.Booking.Booking>
+        IGetAllService<Domain.Entity.Booking.BookingPlaystation>
     {
     }
 }

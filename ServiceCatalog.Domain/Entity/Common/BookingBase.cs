@@ -1,19 +1,23 @@
-﻿using ServiceCatalog.Domain.Entity.Common;
+﻿using ServiceCatalog.Domain.Entity.Playstation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServiceCatalog.Domain.DTO.Booking
+namespace ServiceCatalog.Domain.Entity.Common
 {
-	public class BookingCreateDTO<T>
+	public class BookingBase<T>
 	{
+		public int Id { get; set; }
 		public DateTime BroneTime { get; set; }
-		public TimeSpan Duration { get; set; }
+		public int Duration { get; set; }
 		public string BronePhoneNumber { get; set; }
+		//1=Waiting
+		//2=Paid
+		//3=free
+		//public int BookingStatusId { get; set; }
 
-		// Связь с категорией поля через общий интерфейс
 		public int ServiceId { get; set; }
 		public T Service { get; set; }
 	}

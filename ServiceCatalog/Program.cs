@@ -4,9 +4,11 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.Core;
 using ServiceCatalog.Application.Inrefaces.Booking;
+using ServiceCatalog.Application.Inrefaces.Other;
 using ServiceCatalog.Application.Inrefaces.Playstation;
 using ServiceCatalog.Application.Inrefaces.Stadiums;
 using ServiceCatalog.Application.Profiles;
+using ServiceCatalog.Application.Services;
 using ServiceCatalog.Application.Services.Booking;
 using ServiceCatalog.Application.Services.Playstation;
 using ServiceCatalog.Infrastructure.Data.Contex;
@@ -39,6 +41,16 @@ namespace ServiceCatalog
             #region PlaystationServices
             builder.Services.AddScoped<IRepositoryPlaystationArea, PlaystationRepository>();
             builder.Services.AddScoped<IServicePlaystationArea, PlaystationService>();
+			#endregion
+			#region Cache
+			builder.Services.AddStackExchangeRedisCache(opt =>
+			{
+				string connect = builder.Configuration.
+					GetConnectionString("Redis");
+
+				opt.Configuration = connect;
+			});
+			builder.Services.AddScoped<ICacheService, CacheService>();
 			#endregion
 			#region Mapper
 			builder.Services.AddAutoMapper(typeof(MapProfile));

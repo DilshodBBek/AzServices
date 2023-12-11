@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ServiceCatalog.Domain.DTO.Booking
 {
-	public class BookingUpdateDTO
+	public class BookingUpdateDTO<T>
 	{
 		public int Id { get; set; }
 		public DateTime BroneTime { get; set; }
@@ -16,6 +16,6 @@ namespace ServiceCatalog.Domain.DTO.Booking
 
 		// Связь с категорией поля через общий интерфейс
 		public int ServiceId { get; set; }
-		public Base Service { get; set; }
+		public T Service { get; set; }
 	}
 }
