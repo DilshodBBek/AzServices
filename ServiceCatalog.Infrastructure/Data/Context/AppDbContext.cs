@@ -21,7 +21,8 @@ namespace ServiceCatalog.Infrastructure.Data.Contex
             optionsBuilder.UseNpgsql(configuration.GetConnectionString("ShokirsDb"));
 
         public DbSet<PlaystationArea> Playstations { get; set; }
-        public DbSet<Booking> Bookings { get; set; }
+        public DbSet<BookingPlaystation> BookingPlaystations { get; set; }
+        public DbSet<Cabin> Cabins{ get; set; }
         public DbSet<Stadium> Stadiums { get; set; }
     }
 }
