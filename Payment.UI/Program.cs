@@ -1,10 +1,7 @@
-
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.EntityFrameworkCore;
-using Payment.Aplication.Interface;
-using Payment.Domain.Entity;
-using Payment.Infrastructure;
-using Payment.Infrastructure.Services;
+using Payment.Aplication.Service;
+using Payment.Domain.Enititys;
+using Payment.Infrastructure.Data;
 
 namespace Payment.UI
 {
@@ -21,7 +18,8 @@ namespace Payment.UI
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
 
-			builder.Services.AddDbContext<ApplicationDbContext>(options =>
+			builder.Services.AddScoped<IUserAccount, UserAccount>();
+			builder.Services.AddDbContext<ServerDbcontext>(options =>
 		options.UseNpgsql(builder.Configuration.GetConnectionString("AZServicesConfugretion")));
 
 

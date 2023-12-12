@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Payment.Domain.Enititys
 {
-	public  class UserAccount
+	public  class UserAccount 
 	{
 		 public int  Id { get; set; }
 		public string CardNamber { get; set; }
