@@ -9,7 +9,7 @@ namespace ServiceCatalog.Application.Inrefaces.FileContent
 {
     public interface IFileContent
     {
-        public Task<bool> Upload(IFormFile file);
+        public Task<string> Upload(IFormFile formFile, int baseId, int categoryId);
         public Task<IFormFile> Download(string path);
     }
 }

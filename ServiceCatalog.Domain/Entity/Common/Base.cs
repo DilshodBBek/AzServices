@@ -19,7 +19,6 @@ namespace ServiceCatalog.Domain.Entity.Common
 		//Немного информации о себе
 		public string Descryption { get; set; } = string.Empty;
 
-
         //Время открытия и закрытия
         public TimeSpan OpenTime { get; set; }
         public TimeSpan CloseTime { get; set; }

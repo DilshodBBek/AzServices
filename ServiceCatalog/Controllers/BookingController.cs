@@ -8,9 +8,6 @@ namespace ServiceCatalog.Controllers
     [Route("api/[controller]/[action]")]
     public class BookingController:ControllerBase
     {
-        public void BronningCategory( /* Category Id*/ /*User user*/ BookingCreateDTO<Cabin> dTO)
-        {
-            
-        }
+
     }
 }

@@ -31,9 +31,9 @@ namespace ServiceCatalog.Application.Services.FileContent
             return formFile;
         }
 
-        public async Task<bool> Upload(IFormFile formFile)
+        public async Task<string> Upload(IFormFile formFile, int baseId, int categoryId)
         {
-            if (formFile == null || formFile.Length == 0) return false;
+            if (formFile == null || formFile.Length == 0) return "";
             string uniqueFileName = $"{Guid.NewGuid()}_{formFile.FileName}";
 
             string uploadsFolder = Path.Combine(_webHostEnvironment.ContentRootPath, "uploads");
@@ -44,7 +44,7 @@ namespace ServiceCatalog.Application.Services.FileContent
 
             using (var stream = new FileStream(filePath, FileMode.Create))
                 await formFile.CopyToAsync(stream);
-            return true;
+            return filePath;
         }
     }
 }
