@@ -11,8 +11,6 @@ namespace ServiceCatalog.Domain.Entity.Booking
 {
     public class BookingPlaystation:BookingBase<Cabin>
     {
-        //public int ServiceId { get; set; }
-        //public Cabin Service { get; set; }
         
     }
 }

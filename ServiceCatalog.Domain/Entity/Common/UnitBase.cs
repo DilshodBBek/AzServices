@@ -11,6 +11,6 @@ namespace ServiceCatalog.Domain.Entity.Common
 		public int Id { get; set; }
 		public string Name { get; set; }
 		public decimal Price { get; set; }
-		public List<BroneStatus> BroneStatuses { get; set; }
+		public List<BroneStatus> BroneStatuseId { get; set; }
 	}
 }

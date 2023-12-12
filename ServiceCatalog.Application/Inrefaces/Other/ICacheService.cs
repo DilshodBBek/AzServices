@@ -8,8 +8,8 @@ namespace ServiceCatalog.Application.Inrefaces.Other
 {
 	public interface ICacheService
 	{
-		bool Add(string key, object value, TimeSpan expiration);
-		T Get<T>(string key);
+		bool Add(string key, int minutes);
+		bool Get(string key);
 		bool Remove(string key);
 	}
 }
