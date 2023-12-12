@@ -4,10 +4,12 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.Core;
 using ServiceCatalog.Application.Inrefaces.Booking;
+using ServiceCatalog.Application.Inrefaces.FileContent;
 using ServiceCatalog.Application.Inrefaces.Playstation;
 using ServiceCatalog.Application.Inrefaces.Stadiums;
 using ServiceCatalog.Application.Profiles;
 using ServiceCatalog.Application.Services.Booking;
+using ServiceCatalog.Application.Services.FileContent;
 using ServiceCatalog.Application.Services.Playstation;
 using ServiceCatalog.Infrastructure.Data.Contex;
 using ServiceCatalog.Infrastructure.Repositories.Booking;
@@ -46,8 +48,11 @@ namespace ServiceCatalog
             #region BookingServices
             builder.Services.AddScoped<IServiceBooking, BookingService>();
             builder.Services.AddScoped<IRepositoryBooking, BookingRepository>();
-            #endregion
-            var app = builder.Build();
+			#endregion
+			#region FileContent
+			builder.Services.AddScoped<IFileContent, FileContentService>();
+			#endregion
+			var app = builder.Build();
 
 			// Configure the HTTP request pipeline.
 			if (app.Environment.IsDevelopment())
