@@ -2,4 +2,5 @@
 
 public class TelegramBotEntity:Base
 {
+
 }
