@@ -28,8 +28,4 @@
     <ProjectReference Include="..\Payment.Domain\Payment.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Service\" />
-  </ItemGroup>
-
 </Project>
