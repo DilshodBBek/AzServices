@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace ServiceCatalog.Application.Inrefaces.Other
 {
-    public interface IPagination <T>
-    {
-        public IEnumerable<T> GetAll();
-    }
+	public interface ICacheService
+	{
+		bool Add(string key, object value, TimeSpan expiration);
+		T Get<T>(string key);
+		bool Remove(string key);
+	}
 }

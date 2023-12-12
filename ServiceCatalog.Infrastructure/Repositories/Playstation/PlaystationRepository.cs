@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using ServiceCatalog.Application.Inrefaces.Pagination;
 using ServiceCatalog.Application.Inrefaces.Playstation;
 using ServiceCatalog.Domain.Entity.Playstation;
 using ServiceCatalog.Infrastructure.Data.Contex;
@@ -50,6 +52,11 @@ namespace ServiceCatalog.Infrastructure.Repositories.Playstation
           _db.Playstations.Update(entity);
           await  _db.SaveChangesAsync();
             return true;
+        }
+        public async Task<PaginatedList<PlaystationArea>> GetQuery(int pageIndex, int countElementInPage)
+        {
+            PaginatedList<PlaystationArea> Playstations = new(_db.Playstations, pageIndex, countElementInPage);
+            return Playstations;
         }
     }
 }

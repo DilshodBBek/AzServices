@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using ServiceCatalog.Application.Inrefaces.Pagination;
 using ServiceCatalog.Application.Inrefaces.Playstation;
 using ServiceCatalog.Domain.DTO.Playstation;
 using ServiceCatalog.Domain.Entity.Playstation;
@@ -60,15 +61,11 @@ namespace ServiceCatalog.Controllers
             return new(UpdatePlaystation, HttpStatusCode.Conflict);
         }
         [HttpGet]
-        public async Task<ResponseModel<IEnumerable<PlaystationArea>>> GetPlaystationPage(int page,int pageSize)
+        public async Task<ResponseModel<IEnumerable<PlaystationArea>>> GetPlaystationPage(int page, int pageSize)
         {
-            var Playstations= await _service.GetAll();
-            var PaginatedList= Playstations
-            .Skip((page - 1) * pageSize)
-            .Take(pageSize)
-            .ToList();
-            if (PaginatedList.Count < 1) return new("This page is empty",HttpStatusCode.BadGateway);
-            return new(PaginatedList,HttpStatusCode.Accepted);
+            PaginatedList<PlaystationArea> res = await _service.GetQuery(page, pageSize);
+            if(res.Count()>=1) return new(res, HttpStatusCode.Accepted);
+            return new("",HttpStatusCode.BadRequest);
         }
     }
 }

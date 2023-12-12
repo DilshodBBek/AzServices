@@ -14,7 +14,7 @@ namespace ServiceCatalog.Application.Services.Booking
         {
             _bookingRepository = cRUDRepositoryBooking;
         }
-        public Task<bool> Create(Domain.Entity.Booking.Booking obj)
+        public Task<bool> Create(Domain.Entity.Booking.BookingPlaystation obj)
 		{
 			var res = _bookingRepository.Create(obj);
 			return res;
@@ -26,19 +26,19 @@ namespace ServiceCatalog.Application.Services.Booking
 			return res;
 		}
 
-		public Task<IEnumerable<Domain.Entity.Booking.Booking>> GetAll()
+		public Task<IEnumerable<Domain.Entity.Booking.BookingPlaystation>> GetAll()
 		{
 			var res = _bookingRepository.GetAll();
 			return res;
 		}
 
-		public Task<Domain.Entity.Booking.Booking> GetById(int Id)
+		public Task<Domain.Entity.Booking.BookingPlaystation> GetById(int Id)
 		{
 			var res = _bookingRepository.GetById(Id);
 			return res;
 		}
 
-		public Task<bool> Update(Domain.Entity.Booking.Booking entity)
+		public Task<bool> Update(Domain.Entity.Booking.BookingPlaystation entity)
 		{
 			var res = _bookingRepository.Update(entity);
 			return res;

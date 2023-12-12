@@ -1,5 +1,4 @@
 ﻿using ServiceCatalog.Domain.Entity.Common;
-using ServiceCatalog.Domain.State;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace ServiceCatalog.Domain.Entity.Stadium
 {
-	public class Stadium :Base
+	public class Field:UnitBase
 	{
-		public int CategoryId { get; } = 2;
-		public List<Field> Fields { get; set; }
+		public Stadium Stadium { get; set; }
 	}
 }

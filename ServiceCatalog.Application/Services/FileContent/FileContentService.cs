@@ -1,11 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using ServiceCatalog.Application.Inrefaces.FileContent;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ServiceCatalog.Application.Services.FileContent
 {
@@ -17,10 +12,29 @@ namespace ServiceCatalog.Application.Services.FileContent
         {
             _webHostEnvironment = webHostEnvironment;
         }
-        public async Task<bool> Upload(IFormFile formFile, int baseId)
+
+        public async Task<IFormFile> Download(string path)
+        {
+            // Assuming 'path' is the physical path to the file
+            var fileInfo = new FileInfo(path);
+
+            if (!fileInfo.Exists) return null;
+            // Create an IFormFile representation of the file
+            var formFile = new FormFile(
+                baseStream: new FileStream(fileInfo.FullName, FileMode.Open),
+                baseStreamOffset: 0,
+                length: fileInfo.Length,
+                name: "file",
+                fileName: fileInfo.Name
+            );
+
+            return formFile;
+        }
+
+        public async Task<bool> Upload(IFormFile formFile)
         {
             if (formFile == null || formFile.Length == 0) return false;
-            string uniqueFileName = $"{baseId}_{Guid.NewGuid()}_{formFile.FileName}";
+            string uniqueFileName = $"{Guid.NewGuid()}_{formFile.FileName}";
 
             string uploadsFolder = Path.Combine(_webHostEnvironment.ContentRootPath, "uploads");
 
@@ -30,7 +44,7 @@ namespace ServiceCatalog.Application.Services.FileContent
 
             using (var stream = new FileStream(filePath, FileMode.Create))
                 await formFile.CopyToAsync(stream);
-            return true;    
+            return true;
         }
     }
 }

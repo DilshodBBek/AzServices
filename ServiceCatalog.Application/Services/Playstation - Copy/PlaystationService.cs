@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ServiceCatalog.Application.Inrefaces.Pagination;
 using ServiceCatalog.Application.Inrefaces.Playstation;
 using ServiceCatalog.Domain.Entity.Playstation;
 
@@ -36,6 +37,12 @@ namespace ServiceCatalog.Application.Services.Playstation
         {
          PlaystationArea playstation=await _service.GetById(Id);  
             return playstation; 
+        }
+
+        public async Task<PaginatedList<PlaystationArea>> GetQuery(int pageIndex, int countElementInPage)
+        {
+          var result= await _service.GetQuery(pageIndex, countElementInPage);
+            return result;
         }
 
         public async Task<bool> Update(PlaystationArea entity)

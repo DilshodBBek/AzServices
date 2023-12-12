@@ -9,7 +9,7 @@ namespace ServiceCatalog.Infrastructure.Repositories.Booking
 {
     public class BookingRepository : IRepositoryBooking
 	{
-		public Task<bool> Create(Domain.Entity.Booking.Booking obj)
+		public Task<bool> Create(Domain.Entity.Booking.BookingPlaystation obj)
 		{
 			throw new NotImplementedException();
 		}
@@ -19,17 +19,17 @@ namespace ServiceCatalog.Infrastructure.Repositories.Booking
 			throw new NotImplementedException();
 		}
 
-		public Task<IEnumerable<Domain.Entity.Booking.Booking>> GetAll()
+		public Task<IEnumerable<Domain.Entity.Booking.BookingPlaystation>> GetAll()
 		{
 			throw new NotImplementedException();
 		}
 
-		public Task<Domain.Entity.Booking.Booking> GetById(int Id)
+		public Task<Domain.Entity.Booking.BookingPlaystation> GetById(int Id)
 		{
 			throw new NotImplementedException();
 		}
 
-		public Task<bool> Update(Domain.Entity.Booking.Booking entity)
+		public Task<bool> Update(Domain.Entity.Booking.BookingPlaystation entity)
 		{
 			throw new NotImplementedException();
 		}

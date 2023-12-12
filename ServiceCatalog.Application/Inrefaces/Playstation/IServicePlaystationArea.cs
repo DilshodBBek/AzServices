@@ -1,4 +1,5 @@
 ﻿using ServiceCatalog.Application.Inrefaces.Base;
+using ServiceCatalog.Application.Inrefaces.Pagination;
 using ServiceCatalog.Domain.Entity.Playstation;
 using System;
 using System.Collections.Generic;
@@ -15,5 +16,6 @@ namespace ServiceCatalog.Application.Inrefaces.Playstation
         IDeleteService,
         IGetAllService<PlaystationArea>
     {
+        public Task<PaginatedList<PlaystationArea>> GetQuery(int pageIndex, int countElementInPage);
     }
 }
