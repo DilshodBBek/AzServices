@@ -18,16 +18,16 @@ namespace ServiceCatalog.Application.Services
 			_distributedCache = distributedCache;
 		}
 
-		public bool Add(string key, object value, TimeSpan expiration)
+		public bool Add(string key, int expiration)
 		{
 			try
 			{
 				var options = new DistributedCacheEntryOptions
 				{
-					AbsoluteExpirationRelativeToNow = expiration
+					AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(expiration)
 				};
 
-				var serializedValue = JsonConvert.SerializeObject(value);
+				var serializedValue = "true";
 				_distributedCache.SetString(key, serializedValue, options);
 
 				return true;
@@ -38,16 +38,16 @@ namespace ServiceCatalog.Application.Services
 			}
 		}
 
-		public T Get<T>(string key)
+		public bool Get(string key)
 		{
-			var cachedValue = _distributedCache.GetString(key);
+			string? cachedValue = _distributedCache.GetString(key);
 
 			if (cachedValue != null)
 			{
-				return JsonConvert.DeserializeObject<T>(cachedValue);
+				return true;
 			}
 
-			return default;
+			return false;
 		}
 
 		public bool Remove(string key)

@@ -9,6 +9,6 @@ namespace ServiceCatalog.Application.Inrefaces
 {
 	public interface IBroneStatusService<T>
 	{
-		List<T> GetStatus(int CabinaId);
+		T GetStatus(int CabinaId);
 	}
 }

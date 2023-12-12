@@ -16,8 +16,6 @@ namespace ServiceCatalog.Domain.Entity.Common
 		//1=Waiting
 		//2=Paid
 		//3=free
-		//public int BookingStatusId { get; set; }
-
 		public int ServiceId { get; set; }
 		public T Service { get; set; }
 	}

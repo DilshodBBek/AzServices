@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ServiceCatalog.Domain.DTO.Stadium
 {
-	internal class StadiumCreateDTO
+	public class StadiumCreateDTO
 	{
 	}
 }
