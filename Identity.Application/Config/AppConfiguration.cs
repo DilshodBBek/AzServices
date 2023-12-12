@@ -8,6 +8,8 @@ public class AppConfiguration
     public JWTKeyConfiguration JWTKey { get; set; }
 }
 
+
+
 public class Logging
 {
     public LogLevel LogLevel { get; set; }
