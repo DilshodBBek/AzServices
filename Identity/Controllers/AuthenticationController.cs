@@ -16,29 +16,27 @@ public class AuthenticationController : ControllerBase
 {
     private readonly IAuthService _authService;
     private readonly ILogger<AuthenticationController> _logger;
-    private readonly AuthService _authservice;
 
-    public AuthenticationController(IAuthService authService, ILogger<AuthenticationController> logger, AuthService authservice)
+    public AuthenticationController(IAuthService authService, ILogger<AuthenticationController> logger)
     {
         _authService = authService;
         _logger = logger;
-        _authservice = authservice;
     }
     [HttpPost]
     [Route("login")]
     public async Task<ResponseModelForall<Token>> Login(Credential model)
     {
-        return await _authservice.LoginAsync(model);
+        return await _authService.LoginAsync(model);
     }
     [HttpPost("Registration")]
     public async Task<ResponseModelForall<(Token, ApplicationUser)>> Register(RegisteredModel model)
     {
-        return await _authservice.RegisterAsync(model);
+        return await _authService.RegisterAsync(model);
     }
     [HttpPost("RefreshToken")]
     [AllowAnonymous]
     public async Task<ResponseModelForall<Token>> RefreshToken(Token token)
     {
-        return await _authservice.RefreshTokenAsync(token);
+        return await _authService.RefreshTokenAsync(token);
     }
 }

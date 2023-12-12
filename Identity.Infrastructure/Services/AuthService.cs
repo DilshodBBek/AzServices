@@ -4,6 +4,7 @@ using Identity.Application.Interfaces;
 using Identity.Domain.Entities;
 using Identity.Domain.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal;
 using Microsoft.Extensions.Configuration;
 using System.Security.Cryptography;
 using System.Text;
@@ -20,17 +21,17 @@ public class AuthService : IAuthService
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly  RoleManager<Role> _roleManager;
 
+        public AuthService(ITokenService tokenService, ApplicationDbcontext mydbcontext, IMapper mapper, IConfiguration configuration, UserManager<ApplicationUser> userManager , RoleManager<Role> roleManager)
+        {
+            _tokenService = tokenService;
+            _mydbcontext = mydbcontext;
+            _mapper = mapper;
+            _configuration = configuration;
+            _userManager = userManager;
+            _roleManager = roleManager;
+        }
 
-     public AuthService(ITokenService tokenService, ApplicationDbcontext mydbcontext, IMapper mapper, IConfiguration configuration, int refreshTokenLifetime)
-    {
-        _tokenService = tokenService;
-        _mydbcontext = mydbcontext;
-        _mapper = mapper;
-        _configuration = configuration;
-        _refreshTokenLifetime = int.Parse(_configuration["JWTKey:RefreshTokenValidityInMinutes"]);
-    }
-
-    public async Task<bool> IsValidRefreshToken(string RefreshToken, int userid)
+        public async Task<bool> IsValidRefreshToken(string RefreshToken, int userid)
     {
         var res = _mydbcontext.RefreshTokens.Where(x => x.UserId.Equals(userid) && x.RefreshTokenValue.Equals(RefreshToken));
         RefreshToken? refreshTokenEntity;

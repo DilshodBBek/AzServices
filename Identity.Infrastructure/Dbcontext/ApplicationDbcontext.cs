@@ -8,10 +8,11 @@ namespace Identity.Domain.Entities
     {
         public DbSet<permission> Permissions { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
-        public ApplicationDbcontext(DbContextOptions<ApplicationDbcontext> options)
-            : base(options)
+        public DbSet<Role> Roles { get; set; }
+        public ApplicationDbcontext(DbContextOptions<ApplicationDbcontext> options) : base(options)
         {
         }
+
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
