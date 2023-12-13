@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Flurl.Http.Content;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Npgsql.Internal.Postgres;
 using ServiceCatalog.Domain.Entity.Booking;
@@ -24,5 +25,7 @@ namespace ServiceCatalog.Infrastructure.Data.Contex
         public DbSet<BookingPlaystation> BookingPlaystations { get; set; }
         public DbSet<Cabin> Cabins{ get; set; }
         public DbSet<Stadium> Stadiums { get; set; }
+        public DbSet<Domain.Entity.File.FileContent> FileContents { get; set; }
+        
     }
 }

@@ -9,17 +9,18 @@ using ServiceCatalog.Application.Inrefaces.FileContent;
 using ServiceCatalog.Application.Inrefaces.Playstation;
 using ServiceCatalog.Application.Inrefaces.Stadiums;
 using ServiceCatalog.Application.Profiles;
-using ServiceCatalog.Application.Services;
 using ServiceCatalog.Application.Services.Booking;
 using ServiceCatalog.Application.Services.FileContent;
 using ServiceCatalog.Application.Services.Playstation;
 using ServiceCatalog.Infrastructure.Data.Contex;
 using ServiceCatalog.Infrastructure.Repositories.Booking;
 using ServiceCatalog.Infrastructure.Repositories.Playstation;
+using ServiceCatalog.Infrastructure.Repositories.FileContent;
+using ServiceCatalog.Application.Services.Caching;
 
 namespace ServiceCatalog
 {
-	public class Program
+    public class Program
 	{
 		public static void Main(string[] args)
 		{
@@ -62,7 +63,8 @@ namespace ServiceCatalog
             builder.Services.AddScoped<IRepositoryBooking, BookingRepository>();
 			#endregion
 			#region FileContent
-			builder.Services.AddScoped<IFileContent, FileContentService>();
+			builder.Services.AddScoped<IFileContentService, FileContentService>();
+			builder.Services.AddScoped<IFileContentRepository, FileContentRepository>();
 			#endregion
 			var app = builder.Build();
 

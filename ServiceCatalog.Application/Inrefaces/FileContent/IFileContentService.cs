@@ -1,15 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ServiceCatalog.Application.Inrefaces.Base;
 
 namespace ServiceCatalog.Application.Inrefaces.FileContent
 {
-    public interface IFileContent
+    public interface IFileContentService
     {
         public Task<string> Upload(IFormFile formFile, int baseId, int categoryId);
         public Task<IFormFile> Download(string path);
+        public Task<bool> Delete(string path);
+        public Task<bool> Create(Domain.Entity.File.FileContent obj);
     }
 }
