@@ -79,7 +79,14 @@ public class AuthService : IAuthService
 
     public async Task<ResponseModelForall<(Token, ApplicationUser)>> RegisterAsync(RegisteredModel model)
     {
-            ApplicationUser user = _mapper.Map<ApplicationUser>(model); 
+            ApplicationUser user = new()
+            {
+                phone = model.phone,
+                Firstname = model.Firstname,
+                Lastname = model.Lastname,
+                Username = model.Username,
+
+            };
            
         var isExistuser = _userManager.FindByNameAsync(model.Username);
         if (isExistuser! ==null)
