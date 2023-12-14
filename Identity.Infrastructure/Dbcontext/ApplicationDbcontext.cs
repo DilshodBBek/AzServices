@@ -12,17 +12,5 @@ namespace Identity.Domain.Entities
         public ApplicationDbcontext(DbContextOptions<ApplicationDbcontext> options) : base(options)
         {
         }
-
-
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    base.OnModelCreating(modelBuilder);
-
-        //    modelBuilder.Entity<Role>()
-        //        .HasMany(r => r.Permissions)
-        //        .WithOne()
-        //        .HasForeignKey(rp => rp.roles)
-        //        .IsRequired();
-        //}
     }
 }
