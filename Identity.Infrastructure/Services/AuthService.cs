@@ -6,13 +6,14 @@ using Identity.Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using System.Security.Cryptography;
 using System.Text;
 namespace Identity.Infrastructure.Services
 {
 
 public class AuthService : IAuthService
-{
+{   private readonly ILogger<AuthService> _logger;
     private readonly ITokenService _tokenService;
     private readonly ApplicationDbcontext _mydbcontext;
     private readonly IMapper _mapper;
@@ -21,7 +22,7 @@ public class AuthService : IAuthService
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly  RoleManager<Role> _roleManager;
 
-        public AuthService(ITokenService tokenService, ApplicationDbcontext mydbcontext, IMapper mapper, IConfiguration configuration, UserManager<ApplicationUser> userManager , RoleManager<Role> roleManager)
+        public AuthService(ITokenService tokenService, ApplicationDbcontext mydbcontext, IMapper mapper, IConfiguration configuration, UserManager<ApplicationUser> userManager, RoleManager<Role> roleManager, ILogger<AuthService> logger)
         {
             _tokenService = tokenService;
             _mydbcontext = mydbcontext;
@@ -29,6 +30,7 @@ public class AuthService : IAuthService
             _configuration = configuration;
             _userManager = userManager;
             _roleManager = roleManager;
+            _logger = logger;
         }
 
         public async Task<bool> IsValidRefreshToken(string RefreshToken, int userid)
@@ -56,6 +58,7 @@ public class AuthService : IAuthService
           Token token = await _tokenService.GenerateTokenAsync(user);
           bool isSuccess = await SaveRefreshToken(token.RefreshToken, user);
           return isSuccess ? new(token) : new("Failed to save refresh token");
+         _logger.LogInformation($"{credential.Username + " " + DateTime.Now}");
         }
             else
             {
@@ -76,7 +79,8 @@ public class AuthService : IAuthService
 
     public async Task<ResponseModelForall<(Token, ApplicationUser)>> RegisterAsync(RegisteredModel model)
     {
-        ApplicationUser user = _mapper.Map<ApplicationUser>(model);
+            ApplicationUser user = _mapper.Map<ApplicationUser>(model); 
+           
         var isExistuser = _userManager.FindByNameAsync(model.Username);
         if (isExistuser! ==null)
         {
