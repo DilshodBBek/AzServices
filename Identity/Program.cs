@@ -9,23 +9,25 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Linq;
 using System.Text;
 using Identity.Application.Mapper;
+using Serilog;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-//string Connectionpath = @"../Application/Common.json";
-//string connectionString = File.ReadAllText(Connectionpath);
-//JObject json = JObject.Parse(connectionString);
-//string defaultConnectionString = json["ConnectionStrings"]["DefaultConnection"].ToString();
 builder.Services.AddDbContext<ApplicationDbcontext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddIdentity<ApplicationUser, Role>().AddEntityFrameworkStores<ApplicationDbcontext>().AddDefaultTokenProviders();
 builder.Services.AddScoped<IAuthService,AuthService>();
 builder.Services.AddScoped<ITokenService,TokenService>();
 builder.Services.addmapping();
+builder.Host.UseSerilog((context, services, loggerConfiguration) =>
+{
+    loggerConfiguration.ReadFrom.Configuration(context.Configuration);
+});
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.SaveToken = true;
@@ -63,7 +65,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 app.UseMiddleware<ExceptionMiddlerWare>();
-
+app.UseSerilogRequestLogging();
 app.MapControllers();
 
 app.Run();
