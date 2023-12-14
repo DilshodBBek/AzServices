@@ -2,6 +2,7 @@
 using Identity.Domain.Entities;
 using Identity.Domain.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -21,13 +22,15 @@ namespace Identity.Infrastructure.Services
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly RoleManager<Role> _roleManager;
         private readonly IConfiguration _configuration;
+        private readonly ApplicationDbcontext _dbcontext;
 
-        public TokenService(IConfiguration configuration, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<Role> roleManager)
+        public TokenService(IConfiguration configuration, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<Role> roleManager, ApplicationDbcontext dbcontext)
         {
             _configuration = configuration;
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            _dbcontext = dbcontext;
         }
 
         public string ComputeSha256hash(string input)
@@ -73,19 +76,19 @@ namespace Identity.Infrastructure.Services
             {
                 claims.Add(new Claim(ClaimTypes.Role, role));
 
-                var roleEntity = await _roleManager.FindByNameAsync(role);
-                if (roleEntity != null)
+                ICollection<permission>? permissionsEntity = _dbcontext.Roles.Include(x => x.Permissions).AsNoTracking().FirstOrDefault(x => x.Name.Equals(role)).Permissions;
+                if (permissionsEntity != null)
                 {
-                    foreach (var permission in roleEntity.Permissions)
+                    foreach (var permission in permissionsEntity)
                     {
                         claims.Add(new Claim("permission", permission.name));
                     }
                 }
             }
 
-            var securitykey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWTKey:Key"]));
+            var securitykey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWTKey:Secret"]));
             var credentials = new SigningCredentials(securitykey, SecurityAlgorithms.HmacSha256);
-            double accessTokenLife = double.Parse(_configuration["JWTKey:TokenExpiryTimeInMinutes"]);
+            double accessTokenLife = double.Parse(_configuration["JWTKey:RefreshTokenValidityInMinutes"]);
             var token1 = new JwtSecurityToken(claims: claims, expires: DateTime.Now.AddMinutes(accessTokenLife), signingCredentials: credentials);
             string accessToken = new JwtSecurityTokenHandler().WriteToken(token1);
             Token token = new Token()

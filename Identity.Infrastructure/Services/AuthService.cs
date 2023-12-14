@@ -21,8 +21,9 @@ public class AuthService : IAuthService
     private readonly int _refreshTokenLifetime;
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly  RoleManager<Role> _roleManager;
+        private readonly ApplicationDbcontext _dbcontext;
 
-        public AuthService(ITokenService tokenService, ApplicationDbcontext mydbcontext, IMapper mapper, IConfiguration configuration, UserManager<ApplicationUser> userManager, RoleManager<Role> roleManager, ILogger<AuthService> logger)
+        public AuthService(ITokenService tokenService, ApplicationDbcontext mydbcontext, IMapper mapper, IConfiguration configuration, UserManager<ApplicationUser> userManager, RoleManager<Role> roleManager, ILogger<AuthService> logger, ApplicationDbcontext dbcontext)
         {
             _tokenService = tokenService;
             _mydbcontext = mydbcontext;
@@ -31,6 +32,7 @@ public class AuthService : IAuthService
             _userManager = userManager;
             _roleManager = roleManager;
             _logger = logger;
+            _dbcontext = dbcontext;
         }
 
         public async Task<bool> IsValidRefreshToken(string RefreshToken, int userid)
@@ -84,21 +86,26 @@ public class AuthService : IAuthService
                 phone = model.phone,
                 Firstname = model.Firstname,
                 Lastname = model.Lastname,
-                Username = model.Username,
+                UserName=model.Username
 
             };
+
+            //var isExistuser = _userManager.FindByNameAsync(model.Username);
+            //if (isExistuser! ==null)
+            //{
+            //    return new("user already exist");
+            //}
+          
+            var CreatedUserResult = await _userManager.CreateAsync(user, model.Password);
+        
            
-        var isExistuser = _userManager.FindByNameAsync(model.Username);
-        if (isExistuser! ==null)
-        {
-            return new("user already exist");
-        }
-        var CreatedUserResult = await _userManager.CreateAsync(user, model.Password);
+          
       if(!CreatedUserResult.Succeeded)
         {
                 return new("user creation failed");
         }
-        Token token = await _tokenService.GenerateTokenAsync(user);
+            var Giverole = await _userManager.AddToRoleAsync(user, "userbasic");
+            Token token = await _tokenService.GenerateTokenAsync(user);
         bool issuccess = await SaveRefreshToken(token.RefreshToken, user);
         return issuccess ? new((token, user)) : new("failed");
     }

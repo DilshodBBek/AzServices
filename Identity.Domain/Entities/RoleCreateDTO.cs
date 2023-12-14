@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Identity.Domain.Entities
 {
-    public class RoleCreateDTO : IdentityRole<int>
+    public class RoleCreateDTO 
     {
         public string Name { get; set; }
-        public virtual ICollection<int>? userids { get; set; }
+        //public virtual ICollection<int>? userids { get; set; }
         //public virtual ICollection<ApplicationUser>? Users { get; set; }
         public virtual ICollection<int>? Permissionids { get; set; }
     }
