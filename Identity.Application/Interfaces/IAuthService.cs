@@ -12,4 +12,6 @@ public interface IAuthService
     Task<ResponseModelForall<Token>> RefreshTokenAsync(Token token);
     Task<bool> SaveRefreshToken(string RefreshToken, ApplicationUser user);
     Task<bool> IsValidRefreshToken(string RefreshToken, int userid);
+    Task <string>UpdatePassword(string UserName, string Password,string NewPassword);
+    Task<string> ForgotPasswordAsync(string Phone);
 }

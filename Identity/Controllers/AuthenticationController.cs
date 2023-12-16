@@ -4,6 +4,7 @@ using Identity.Domain.Entities;
 using Identity.Domain.Models;
 using Identity.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SP.Domain.Models;
 using System.Net;
@@ -15,12 +16,12 @@ namespace Identity.Controllers;
 public class AuthenticationController : ControllerBase
 {
     private readonly IAuthService _authService;
-    private readonly ILogger<AuthenticationController> _logger;
+   private readonly UserManager<ApplicationUser> _userManager;
 
-    public AuthenticationController(IAuthService authService, ILogger<AuthenticationController> logger)
+    public AuthenticationController(IAuthService authService, ApplicationDbcontext dbcontext, UserManager<ApplicationUser> userManager)
     {
         _authService = authService;
-        _logger = logger;
+        _userManager = userManager;
     }
     [HttpPost]
     [Route("login")]
@@ -31,6 +32,7 @@ public class AuthenticationController : ControllerBase
     [HttpPost("Registration")]
     public async Task<ResponseModelForall<(Token, ApplicationUser)>> Register(RegisteredModel model)
     {
+       
         return await _authService.RegisterAsync(model);
     }
     [HttpPost("RefreshToken")]
@@ -38,5 +40,17 @@ public class AuthenticationController : ControllerBase
     public async Task<ResponseModelForall<Token>> RefreshToken(Token token)
     {
         return await _authService.RefreshTokenAsync(token);
+    }
+    [HttpPost("UpdatePassword")]
+    //[AuthefrationAttributeFilter("UpdatePassword")]
+    public async Task<string> UpdatePassword(string UserName, string Password, string NewPassword)
+    {
+       return await _authService.UpdatePassword(UserName, Password, NewPassword);
+    }
+    [HttpPost("ForgotPassword")]
+    //[AuthefrationAttributeFilter("ForgotPassword")]
+    public async Task<string> YouForgotPassword(string Phone)
+    {
+        return await _authService.ForgotPasswordAsync(Phone);
     }
 }
