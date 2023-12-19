@@ -18,7 +18,7 @@ namespace Payment.UI
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
 
-			builder.Services.AddScoped<IUserAccount, UserAccount>();
+		
 			builder.Services.AddDbContext<ServerDbcontext>(options =>
 		options.UseNpgsql(builder.Configuration.GetConnectionString("AZServicesConfugretion")));
 
