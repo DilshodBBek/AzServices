@@ -17,13 +17,11 @@ namespace Identity.Controllers
         public readonly ApplicationDbcontext _dbcontext;
        // permission Permission=new permission();
         private readonly RoleManager<Role> _roleManager;
-        private readonly UserManager<ApplicationUser> _userManager;
 
-        public RoleController(RoleManager<Role> roleManager, ApplicationDbcontext dbcontext, UserManager<ApplicationUser> userManager)
+        public RoleController(RoleManager<Role> roleManager, ApplicationDbcontext dbcontext)
         {
             _roleManager = roleManager;
             _dbcontext = dbcontext;
-            _userManager = userManager;
         }
         [HttpGet("GetAllRoles")]
         public IActionResult GetAllRoles()
@@ -64,34 +62,36 @@ namespace Identity.Controllers
             {
                 return BadRequest("Role with this name already exists");
             }
-            var role = new Role
-            {
-                Name = roleCreateDTO.Name,
-                NormalizedName = roleCreateDTO.Name.ToUpperInvariant()
-            };
+
+            var role = new Role { Name = roleCreateDTO.Name };
             var result = await _roleManager.CreateAsync(role);
 
             if (result.Succeeded)
-
-                if (roleCreateDTO.Permissionids != null && roleCreateDTO.Permissionids.Any())
-                    if (roleCreateDTO.Permissionids != null)
+            {
+                if (roleCreateDTO.Permissionids != null)
+                {
+                    foreach (var permissionId in roleCreateDTO.Permissionids)
                     {
-                        foreach (var permissionId in roleCreateDTO.Permissionids)
+                        var permission = await _dbcontext.Permissions.FindAsync(permissionId);
+                        if (permission != null)
                         {
-                            var permission = await _dbcontext.Permissions.FindAsync(permissionId);
-                            if (permission != null)
+                            role.Permissions.Add(new permission 
                             {
-                                await _roleManager.AddClaimAsync(role, new Claim("permission", permission.name));
-                            }
-                            role.Permissions.Add(permission);
+                               id=permission.id,
+                             });
                         }
-
                     }
 
+                    await _dbcontext.SaveChangesAsync();
+                }
+
                 return Ok($"Role {role.Name} created successfully");
+            }
 
             return BadRequest("Error creating role");
         }
+
+
 
         [HttpPut("UpdateRole")]
         public async Task<IActionResult> UpdateRole(int roleId, string newRoleName, List<int> permissionIds)
