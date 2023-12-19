@@ -25,7 +25,15 @@ namespace Identity.Controllers
         [HttpGet("GetAllRoles")]
         public IActionResult GetAllRoles()
         {
-            var roles = _dbcontext.Roles.Include(x=>x.Permissions).ToList();
+            List<RoleGetDTO> roles = _dbcontext.Roles
+    .Include(x => x.Permissions)
+    .Select(x => new RoleGetDTO
+    {
+       Permissionids=x.Permissions.Select(x=>x.id).ToList(),
+       Id=x.Id,
+       Name=x.Name
+    }).ToList();
+
             return Ok(roles);
         }
 
