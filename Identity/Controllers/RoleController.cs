@@ -69,15 +69,17 @@ namespace Identity.Controllers
                 NormalizedName = roleCreateDTO.Name.ToUpperInvariant(),
                 Permissions = roleCreateDTO.Permissionids?.Select(permissionId => new permission
                 {
-                    id = permissionId
+                    id = permissionId,
+                    name=roleCreateDTO.Name,
                     
                 }).ToList(),
-
             };
 
-            var result = await _roleManager.CreateAsync(role);
+            _dbcontext.Roles.Attach(role);
 
-            if (result.Succeeded)
+            var result = await _dbcontext.SaveChangesAsync();
+
+            if (result > 0)
             {
                 if (roleCreateDTO.Permissionids != null)
                 {
@@ -96,6 +98,7 @@ namespace Identity.Controllers
 
             return BadRequest("Error creating role");
         }
+
 
 
 

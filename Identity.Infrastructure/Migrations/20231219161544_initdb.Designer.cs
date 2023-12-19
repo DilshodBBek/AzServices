@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Identity.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbcontext))]
-    [Migration("20231219134431_AzService")]
-    partial class AzService
+    [Migration("20231219161544_initdb")]
+    partial class initdb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -166,7 +166,6 @@ namespace Identity.Infrastructure.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
 
                     b.Property<string>("name")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("id");

@@ -163,7 +163,6 @@ namespace Identity.Infrastructure.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
 
                     b.Property<string>("name")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("id");

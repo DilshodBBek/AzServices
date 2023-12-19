@@ -11,7 +11,7 @@ namespace Identity.Domain.Entities
     public class permission
     {
         public int id { get; set; }
-        public string name { get; set; }
+        public string? name { get; set; }
         public ICollection<Role> roles { get; set; }
     }
 }
