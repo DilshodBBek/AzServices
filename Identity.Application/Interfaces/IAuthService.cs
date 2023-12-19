@@ -7,11 +7,10 @@ namespace Identity.Application.Interfaces;
 
 public interface IAuthService
 {
-    Task<ResponseModelForall<(Token, ApplicationUser)>> RegisterAsync(RegisteredModel model);
+    Task<ResponseModelForall<Token>> RegisterAsync(RegisteredModel model);
     Task<ResponseModelForall<Token>> LoginAsync(Credential credential);
     Task<ResponseModelForall<Token>> RefreshTokenAsync(Token token);
     Task<bool> SaveRefreshToken(string RefreshToken, ApplicationUser user);
     Task<bool> IsValidRefreshToken(string RefreshToken, int userid);
     Task <string>UpdatePassword(string UserName, string Password,string NewPassword);
-    Task<string> ForgotPasswordAsync(string Phone);
 }

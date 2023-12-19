@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
 using System.Text;
 namespace Identity.Infrastructure.Services
@@ -29,7 +30,7 @@ public class AuthService : IAuthService
     private readonly IUrlHelperFactory _urlHelperFactory;
         private readonly ILogger<AuthService> _logger;
 
-        public AuthService(ITokenService tokenService, ApplicationDbcontext mydbcontext, IMapper mapper, IConfiguration configuration, UserManager<ApplicationUser> userManager, RoleManager<Role> roleManager, ApplicationDbcontext dbcontext, IUrlHelperFactory urlHelperFactory)
+        public AuthService(ITokenService tokenService, ApplicationDbcontext mydbcontext, IMapper mapper, IConfiguration configuration, UserManager<ApplicationUser> userManager, RoleManager<Role> roleManager, ApplicationDbcontext dbcontext, IUrlHelperFactory urlHelperFactory, ILogger<AuthService> logger)
         {
             _tokenService = tokenService;
             _mydbcontext = mydbcontext;
@@ -37,9 +38,10 @@ public class AuthService : IAuthService
             _configuration = configuration;
             _userManager = userManager;
             _roleManager = roleManager;
-          
+
             _dbcontext = dbcontext;
             _urlHelperFactory = urlHelperFactory;
+            _logger = logger;
         }
 
         public async Task<bool> IsValidRefreshToken(string RefreshToken, int userid)
@@ -64,7 +66,7 @@ public class AuthService : IAuthService
         ApplicationUser user = await _userManager.FindByNameAsync(credential.Username);
         if (user != null && await _userManager.CheckPasswordAsync(user, credential.Password))
             {
-             _logger.LogWarning($"{credential.Username + "  logged in " + DateTime.Now}");
+                _logger.LogWarning($"{credential.Username + "  logged in " + DateTime.Now}");
                 Token token = await _tokenService.GenerateTokenAsync(user);
           bool isSuccess = await SaveRefreshToken(token.RefreshToken, user);
           return isSuccess ? new(token) : new("Failed to save refresh token");
@@ -87,14 +89,15 @@ public class AuthService : IAuthService
         return issuccess ? new(tokennew) : new("Failed");
     }
 
-    public async Task<ResponseModelForall<(Token, ApplicationUser)>> RegisterAsync(RegisteredModel model)
+    public async Task<ResponseModelForall<Token>> RegisterAsync(RegisteredModel model)
     {
             ApplicationUser user = new()
             {
                 phone = model.phone,
                 Firstname = model.Firstname,
                 Lastname = model.Lastname,
-                UserName=model.Username
+                UserName=model.Username,
+                Email=model.Email,
 
             };
           
@@ -106,11 +109,11 @@ public class AuthService : IAuthService
         {
                 return new("user creation failed");
         }
-            _logger.LogWarning($"Registered user: {model.Username} when {DateTime.Now} ");
+            //_logger.LogWarning($"Registered user: {model.Username} when {DateTime.Now} ");
             var Giverole = await _userManager.AddToRoleAsync(user, "userbasic");
             Token token = await _tokenService.GenerateTokenAsync(user);
         bool issuccess = await SaveRefreshToken(token.RefreshToken, user);
-        return issuccess ? new((token, user)) : new("failed");
+        return issuccess ? new((token)) : new("failed");
     }
     public string ComputeSha256hash(string input)
     {
@@ -201,24 +204,7 @@ public class AuthService : IAuthService
         }
 
 
-        public async Task<string> ForgotPasswordAsync(string Phone)
-        {
-            var user = await _userManager.FindByNameAsync(Phone);
-
-            if (user != null)
-            {
-                var urlHelper = _urlHelperFactory.GetUrlHelper(new ActionContext());
-
-                string token = await _userManager.GeneratePasswordResetTokenAsync(user);
-                string? resetLink = urlHelper.Action("ResetPassword", "Account", new { token, userId = user.Id }, protocol: "https");
-
-                return resetLink;
-            }
-            else
-            {
-                return "User not found";
-            }
-        }
+       
 
     }
 }
