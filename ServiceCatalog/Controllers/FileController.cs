@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ServiceCatalog.Application.Inrefaces.FileContent;
+using ServiceCatalog.Domain.Entity.File;
 using System.Net.Mime;
 
 namespace Payment.UI.Controllers
@@ -7,17 +8,26 @@ namespace Payment.UI.Controllers
     [Route("api/[controller]/[action]")]
     public class FileController : ControllerBase
     {
-        private readonly IFileContent _fileContent;
+        private readonly IFileContentService _fileContent;
 
-        public FileController(IFileContent fileContent)
+        public FileController(IFileContentService fileContent)
         {
             _fileContent = fileContent;
         }
         [HttpPost]
-        public async Task<IActionResult> UploadFile(IFormFile formFile,int baseId,int categoryId)
+        public async Task<IActionResult> UploadFile(IFormFile formFile, int baseId)
         {
-            string UploadResult = await _fileContent.Upload(formFile,baseId, categoryId);
-            if (UploadResult!="") return Ok(UploadResult);
+            string UploadResult = await _fileContent.Upload(formFile, baseId);
+            if (UploadResult != "")
+            {
+                FileContent file = new()
+                {
+                    FileName = UploadResult,
+                    BaseId = baseId,
+                };
+                await _fileContent.Create(file);
+                return Ok(UploadResult);
+            }
             return BadRequest("");
         }
         [HttpGet]
@@ -26,19 +36,18 @@ namespace Payment.UI.Controllers
             try
             {
                 var file = await _fileContent.Download(path);
-                if (file == null) return NotFound(); 
-       
+                if (file == null) return NotFound();
+
                 using (var memoryStream = new MemoryStream())
                 {
                     await file.CopyToAsync(memoryStream);
                     var fileBytes = memoryStream.ToArray();
 
-                    Directory.GetFiles("");
-                    string contentType = "application/octet-stream"; 
+                    string contentType = "application/octet-stream";
                     var contentDisposition = new ContentDisposition
                     {
                         FileName = $"{Guid.NewGuid()}+.png",
-                        Inline = false 
+                        Inline = false
                     };
                     Response.Headers.Add("Content-Disposition", contentDisposition.ToString());
                     return File(fileBytes, contentType);

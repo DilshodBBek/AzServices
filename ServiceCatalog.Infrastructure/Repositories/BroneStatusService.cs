@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ServiceCatalog.Application.Inrefaces;
+using ServiceCatalog.Application.Inrefaces.Brone;
 using ServiceCatalog.Application.Inrefaces.Other;
 using ServiceCatalog.Application.Inrefaces.Playstation;
 using ServiceCatalog.Domain.DTO;
@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace ServiceCatalog.Infrastructure.Repositories
 {
-	public class BronePlaystationStatusService : IBroneStatusService<BroneStatusGetDTO>
+    public class BronePlaystationStatusService : IBroneStatusService<BroneStatusGetDTO>
 	{
 		private readonly AppDbContext _db;
 		private readonly ICacheService _cacheService;
