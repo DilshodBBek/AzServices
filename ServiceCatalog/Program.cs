@@ -32,6 +32,7 @@ namespace ServiceCatalog
 				.File(@"C:\Users\suoki\Desktop\Real\ServiceCatalog\TriggerFile\Logging.json").MinimumLevel.Information()
 				.WriteTo.PostgreSQL(builder.Configuration.GetConnectionString("ShokirsDb"), "Logging", needAutoCreateTable: true).MinimumLevel
 				.Information()
+				
 				.CreateLogger();
 
 		   builder.Services.AddControllers();
