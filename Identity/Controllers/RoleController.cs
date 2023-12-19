@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Identity.Controllers
@@ -16,11 +17,13 @@ namespace Identity.Controllers
         public readonly ApplicationDbcontext _dbcontext;
        // permission Permission=new permission();
         private readonly RoleManager<Role> _roleManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public RoleController(RoleManager<Role> roleManager, ApplicationDbcontext dbcontext)
+        public RoleController(RoleManager<Role> roleManager, ApplicationDbcontext dbcontext, UserManager<ApplicationUser> userManager)
         {
             _roleManager = roleManager;
             _dbcontext = dbcontext;
+            _userManager = userManager;
         }
         [HttpGet("GetAllRoles")]
         public IActionResult GetAllRoles()
@@ -38,9 +41,14 @@ namespace Identity.Controllers
         }
 
         [HttpGet("GetRoleById")]
-        public async Task<IActionResult> GetRoleById(string roleId)
+        public async Task<IActionResult> GetRoleById(int roleId)
         {
-            var role = _dbcontext.Roles.Include(x => x.Permissions).Where(x=>x.Id.Equals(roleId)).ToList();
+            List<RoleGetDTO> role = _dbcontext.Roles.Include(x => x.Permissions).Select(x => new RoleGetDTO
+            {
+                Permissionids = x.Permissions.Select(x => x.id).ToList(),
+                Id = x.Id,
+                Name = x.Name
+            }).ToList().Where(x=>x.Id.Equals(roleId)).ToList();
             if (role == null)
             {
                 return NotFound($"Role with ID {roleId} not found");
@@ -49,41 +57,43 @@ namespace Identity.Controllers
             return Ok(role);
         }
         [HttpPost("CreateRole")]
-        public async Task<IActionResult> CreateRole(string roleName, List<int> permissionIds)
+        public async Task<IActionResult> CreateRole(RoleCreateDTO roleCreateDTO)
         {
-            var roleExists = await _roleManager.RoleExistsAsync(roleName);
+            var roleExists = await _roleManager.RoleExistsAsync(roleCreateDTO.Name);
             if (roleExists)
             {
                 return BadRequest("Role with this name already exists");
             }
 
-            var role = new Role { Name = roleName };
+            var role = new Role
+            {
+                Name = roleCreateDTO.Name,
+                NormalizedName = roleCreateDTO.Name.ToUpperInvariant()
+            };
+
             var result = await _roleManager.CreateAsync(role);
 
             if (result.Succeeded)
             {
-                if (permissionIds != null && permissionIds.Any())
+                if (roleCreateDTO.Permissionids != null && roleCreateDTO.Permissionids.Any())
                 {
-                    foreach (var permissionId in permissionIds)
+                    foreach (var permissionId in roleCreateDTO.Permissionids)
                     {
                         var permission = await _dbcontext.Permissions.FindAsync(permissionId);
                         if (permission != null)
                         {
-                            role.Permissions.Add(new permission 
-                            {
-                               id=permission.id,
-                             });
+                            await _roleManager.AddClaimAsync(role, new Claim("permission", permission.name));
                         }
                     }
-
-                    await _dbcontext.SaveChangesAsync();
                 }
 
-                return Ok($"Role {roleName} created successfully");
+                return Ok($"Role {role.Name} created successfully");
             }
 
             return BadRequest("Error creating role");
         }
+
+
 
 
 
@@ -126,7 +136,7 @@ namespace Identity.Controllers
                 return Ok($"Role with ID {roleId} updated successfully");
             }
 
-            return BadRequest("Error updating role");
+            return BadRequest("Error creating  role");
         }
 
         [HttpDelete("DeleteRole")]
