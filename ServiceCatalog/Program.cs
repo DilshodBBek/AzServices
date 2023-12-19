@@ -29,6 +29,7 @@ namespace ServiceCatalog
 				WriteTo.Console().MinimumLevel
 				.Information().WriteTo
 				.File(@"C:\Users\suoki\Desktop\Real\ServiceCatalog\TriggerFile\Logging.json").MinimumLevel.Information()
+				.WriteTo.Telegram(botToken: "Token...", "chat id")
 				.WriteTo.PostgreSQL(builder.Configuration.GetConnectionString("ShokirsDb"), "Logging", needAutoCreateTable: true).MinimumLevel
 				.Information()
 				.CreateLogger();
@@ -37,6 +38,7 @@ namespace ServiceCatalog
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
+			builder.Services.AddSerilog(logger);
             #region Db
             builder.Services.AddDbContext<AppDbContext>(option => option.UseNpgsql(builder.Configuration.GetConnectionString("ShokirsDb")));
             #endregion
