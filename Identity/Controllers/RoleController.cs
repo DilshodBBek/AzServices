@@ -63,26 +63,26 @@ namespace Identity.Controllers
                 return BadRequest("Role with this name already exists");
             }
 
-            var role = new Role { Name = roleCreateDTO.Name };
+            var role = new Role
+            {
+                Name = roleCreateDTO.Name,
+                NormalizedName = roleCreateDTO.Name.ToUpperInvariant()
+            };
+
             var result = await _roleManager.CreateAsync(role);
 
             if (result.Succeeded)
             {
-                if (roleCreateDTO.Permissionids != null)
+                if (roleCreateDTO.Permissionids != null && roleCreateDTO.Permissionids.Any())
                 {
                     foreach (var permissionId in roleCreateDTO.Permissionids)
                     {
                         var permission = await _dbcontext.Permissions.FindAsync(permissionId);
                         if (permission != null)
                         {
-                            role.Permissions.Add(new permission 
-                            {
-                               id=permission.id,
-                             });
+                            await _roleManager.AddClaimAsync(role, new Claim("permission", permission.name));
                         }
                     }
-
-                    await _dbcontext.SaveChangesAsync();
                 }
 
                 return Ok($"Role {role.Name} created successfully");
@@ -90,6 +90,7 @@ namespace Identity.Controllers
 
             return BadRequest("Error creating role");
         }
+
 
 
 
