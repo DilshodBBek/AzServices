@@ -66,14 +66,20 @@ namespace Identity.Controllers
             var role = new Role
             {
                 Name = roleCreateDTO.Name,
-                NormalizedName = roleCreateDTO.Name.ToUpperInvariant()
+                NormalizedName = roleCreateDTO.Name.ToUpperInvariant(),
+                Permissions = roleCreateDTO.Permissionids?.Select(permissionId => new permission
+                {
+                    id = permissionId
+                    
+                }).ToList(),
+
             };
 
             var result = await _roleManager.CreateAsync(role);
 
             if (result.Succeeded)
             {
-                if (roleCreateDTO.Permissionids != null && roleCreateDTO.Permissionids.Any())
+                if (roleCreateDTO.Permissionids != null)
                 {
                     foreach (var permissionId in roleCreateDTO.Permissionids)
                     {
