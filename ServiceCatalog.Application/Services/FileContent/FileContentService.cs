@@ -38,7 +38,7 @@ namespace ServiceCatalog.Application.Services.FileContent
 
             string uniqueFileName = $"{Guid.NewGuid()}_{formFile.FileName}";
 
-            string uploadsFolder = Path.Combine(_webHostEnvironment.ContentRootPath,"Uploads");
+            string uploadsFolder = @"C: \Users\suoki\Desktop\Real\ServiceCatalog\wwwroot";
 
             string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 

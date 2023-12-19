@@ -4,6 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>2b7c452f-59c7-4097-972b-4bda2c35e474</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,6 +19,7 @@
 
   <ItemGroup>
     <Folder Include="TriggerFile\" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>

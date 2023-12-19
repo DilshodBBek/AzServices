@@ -15,12 +15,11 @@ namespace Payment.UI.Controllers
             _fileContent = fileContent;
         }
         [HttpPost]
-        public async Task<IActionResult> UploadFile(IFormFile formFile, int baseId, int categoryId)
+        public async Task<IActionResult> UploadFile(IFormFile formFile, int baseId)
         {
-            string UploadResult = await _fileContent.Upload(formFile, baseId, categoryId);
+            string UploadResult = await _fileContent.Upload(formFile, baseId);
             if (UploadResult != "")
             {
-
                 FileContent file = new()
                 {
                     FileName = UploadResult,
@@ -44,7 +43,6 @@ namespace Payment.UI.Controllers
                     await file.CopyToAsync(memoryStream);
                     var fileBytes = memoryStream.ToArray();
 
-                    Directory.GetFiles("");
                     string contentType = "application/octet-stream";
                     var contentDisposition = new ContentDisposition
                     {
