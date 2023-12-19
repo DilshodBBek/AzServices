@@ -64,38 +64,34 @@ namespace Identity.Controllers
             {
                 return BadRequest("Role with this name already exists");
             }
-
             var role = new Role
             {
                 Name = roleCreateDTO.Name,
                 NormalizedName = roleCreateDTO.Name.ToUpperInvariant()
             };
-
             var result = await _roleManager.CreateAsync(role);
 
             if (result.Succeeded)
-            {
+
                 if (roleCreateDTO.Permissionids != null && roleCreateDTO.Permissionids.Any())
-                {
-                    foreach (var permissionId in roleCreateDTO.Permissionids)
+                    if (roleCreateDTO.Permissionids != null)
                     {
-                        var permission = await _dbcontext.Permissions.FindAsync(permissionId);
-                        if (permission != null)
+                        foreach (var permissionId in roleCreateDTO.Permissionids)
                         {
-                            await _roleManager.AddClaimAsync(role, new Claim("permission", permission.name));
+                            var permission = await _dbcontext.Permissions.FindAsync(permissionId);
+                            if (permission != null)
+                            {
+                                await _roleManager.AddClaimAsync(role, new Claim("permission", permission.name));
+                            }
+                            role.Permissions.Add(permission);
                         }
+
                     }
-                }
 
                 return Ok($"Role {role.Name} created successfully");
-            }
 
             return BadRequest("Error creating role");
         }
-
-
-
-
 
         [HttpPut("UpdateRole")]
         public async Task<IActionResult> UpdateRole(int roleId, string newRoleName, List<int> permissionIds)
@@ -118,21 +114,16 @@ namespace Identity.Controllers
                     var permission = await _dbcontext.Permissions.FindAsync(permissionId);
                     if (permission != null)
                     {
-                        role.Permissions.Add(new permission
-                        {
-                            id = permission.id,
-                        });
+                        role.Permissions.Add(permission);
                     }
                 }
-
-                await _dbcontext.SaveChangesAsync();
             }
-
 
             var result = await _roleManager.UpdateAsync(role);
 
             if (result.Succeeded)
             {
+                await _dbcontext.SaveChangesAsync();
                 return Ok($"Role with ID {roleId} updated successfully");
             }
 
