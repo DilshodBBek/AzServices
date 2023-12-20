@@ -21,7 +21,6 @@ builder.Services.AddDbContext<ApplicationDbcontext>(options => options.UseNpgsql
 builder.Services.AddIdentity<ApplicationUser, Role>().AddEntityFrameworkStores<ApplicationDbcontext>().AddDefaultTokenProviders();
 builder.Services.AddScoped<IAuthService,AuthService>();
 builder.Services.AddScoped<ITokenService,TokenService>();
-builder.Services.AddScoped<IRoleService,RoleService>();
 builder.Services.addmapping();
 builder.Host.UseSerilog((context, services, loggerConfiguration) =>
 {
