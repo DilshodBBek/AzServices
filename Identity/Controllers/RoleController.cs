@@ -107,7 +107,7 @@ namespace Identity.Controllers
         [HttpPut("UpdateRole")]
         public async Task<IActionResult> UpdateRole(UpdateRoleDTO updateRoleDTO)
         {
-            var role = await _roleManager.FindByIdAsync(updateRoleDTO.roleId.ToString());
+            var role = await _roleManager.Roles.Include(x=>x.Permissions).FirstOrDefaultAsync(x=>x.Id.Equals(updateRoleDTO.roleId));
             if (role == null)
             {
                 return NotFound($"Role with ID {updateRoleDTO.roleId} not found");
