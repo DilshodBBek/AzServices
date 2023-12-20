@@ -1,4 +1,5 @@
 ﻿using Identity.Domain.Entities;
+using Identity.Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -105,41 +106,46 @@ namespace Identity.Controllers
 
 
         [HttpPut("UpdateRole")]
-        public async Task<IActionResult> UpdateRole(int roleId, string newRoleName, List<int> permissionIds)
+        public async Task<IActionResult> UpdateRole(UpdateRoleDTO updateRoleDTO)
         {
-            var role = await _roleManager.FindByIdAsync(roleId.ToString());
+            var role = await _roleManager.FindByIdAsync(updateRoleDTO.roleId.ToString());
             if (role == null)
             {
-                return NotFound($"Role with ID {roleId} not found");
+                return NotFound($"Role with ID {updateRoleDTO.roleId} not found");
             }
 
-            role.Name = newRoleName;
-
-            // Remove existing permissions
-            role.Permissions.Clear();
-
-            if (permissionIds != null && permissionIds.Any())
+            if (updateRoleDTO.permissionIds != null)
             {
-                foreach (var permissionId in permissionIds)
+                // Remove permissions that are no longer selected
+                List<permission> permissionsToRemove = role.Permissions.ToList();
+
+                foreach (var permissionToRemove in permissionsToRemove)
+                {
+                    role.Permissions.ToList().Remove(permissionToRemove);
+                }
+
+                // Add new permissions
+                foreach (var permissionId in updateRoleDTO.permissionIds)
                 {
                     var permission = await _dbcontext.Permissions.FindAsync(permissionId);
-                    if (permission != null)
+                    if (permission != null && !role.Permissions.Contains(permission))
                     {
-                        role.Permissions.Add(permission);
+                        role.Permissions.ToList().Add(permission);
                     }
                 }
             }
-
+            role.Name = updateRoleDTO.newRoleName;
             var result = await _roleManager.UpdateAsync(role);
 
             if (result.Succeeded)
             {
                 await _dbcontext.SaveChangesAsync();
-                return Ok($"Role with ID {roleId} updated successfully");
+                return Ok($"Role with ID {updateRoleDTO.roleId} updated successfully");
             }
 
-            return BadRequest("Error creating  role");
+            return BadRequest("Error updating role");
         }
+
 
         [HttpDelete("DeleteRole")]
         public async Task<IActionResult> DeleteRole(string roleId)

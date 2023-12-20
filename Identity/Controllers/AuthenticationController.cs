@@ -56,7 +56,7 @@ public class AuthenticationController : ControllerBase
             var resetPasswordLink = Url.Action("ResetPassword", "Authentication", new { token, email = user.Email }, Request.Scheme);
 
             return Ok(new ResponseForemailMessage { Result = "success", Message = "Password reset link:", Data = resetPasswordLink });
-        }
+        }                   
         return NotFound(new ResponseForemailMessage { Result = "error", Message = "User with the provided email not found." });
     }
 } 
