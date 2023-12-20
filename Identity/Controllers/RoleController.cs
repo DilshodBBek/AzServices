@@ -17,6 +17,7 @@ namespace Identity.Controllers
         public readonly ApplicationDbcontext _dbcontext;
        // permission Permission=new permission();
         private readonly RoleManager<Role> _roleManager;
+        private readonly UserManager<Role> _userManager;
 
         public RoleController(RoleManager<Role> roleManager, ApplicationDbcontext dbcontext)
         {
@@ -74,7 +75,7 @@ namespace Identity.Controllers
                     
                 }).ToList(),
             };
-
+           
             _dbcontext.Roles.Attach(role);
 
             var result = await _dbcontext.SaveChangesAsync();
