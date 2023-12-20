@@ -26,7 +26,7 @@ namespace Payment.Infrastructure.Service
 				UserAccountId = transoction.UserAccountId,
 				PaymentServise = transoction.PaymentServise,
 				Date = transoction.DateTime = DateTime.UtcNow,
-			//	 UserAccounts = transoction.UserAccountids.Select (x=>x).ToList(),
+	       	       // UserAccounts = transoction.UserAccountids,
 
 
 			};

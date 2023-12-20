@@ -32,10 +32,10 @@ namespace Payment.Infrastructure.Service
 				CardNamber = user.CardNamber,
 				CardValidData = user.CardValidData,
 				TotalBalance = user.TotalBalance,
-				UserTransoctionids = user.UserTransoctionids.Select(x => x).ToList(),
+				UserTransoctionids = user.UserTransoctionids,
 			};
 
-			_paymentDb.Add(user);
+			  //_paymentDb.Add(result);
 			await _paymentDb.SaveChangesAsync();
 			return new();
 		}
