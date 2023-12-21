@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Payment.Infrastructure/Payment.Infrastructure.csproj
+/Payment.Infrastructure/Payment.Infrastructure.csproj
+/Payment.Infrastructure/Payment.Infrastructure.csproj
