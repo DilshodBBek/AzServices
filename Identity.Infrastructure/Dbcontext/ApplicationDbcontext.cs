@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Identity.Domain.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Security;
 
@@ -9,6 +10,8 @@ namespace Identity.Domain.Entities
         public DbSet<permission> Permissions { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<DistrictEntity> Districts { get; set; }
+        public DbSet<RegionEntity> Regions { get; set; }
         public ApplicationDbcontext(DbContextOptions<ApplicationDbcontext> options) : base(options)
         {
         }

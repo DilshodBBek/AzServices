@@ -1,7 +1,9 @@
 ﻿using Application;
 using Identity.Application.Interfaces;
 using Identity.Domain.Entities;
+using Identity.Domain.Enums;
 using Identity.Domain.Models;
+using Identity.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,11 +17,13 @@ public class AuthenticationController : ControllerBase
 {
     private readonly IAuthService _authService;
     private readonly UserManager<ApplicationUser> _userManager;
+    private readonly GetLocationService _locationService;
 
-    public AuthenticationController(IAuthService authService, ApplicationDbcontext dbcontext, UserManager<ApplicationUser> userManager)
+    public AuthenticationController(IAuthService authService, ApplicationDbcontext dbcontext, UserManager<ApplicationUser> userManager, GetLocationService locationService)
     {
         _authService = authService;
         _userManager = userManager;
+        _locationService = locationService;
     }
     [HttpPost]
     [Route("login")]
@@ -58,6 +62,13 @@ public class AuthenticationController : ControllerBase
             return Ok(new ResponseForemailMessage { Result = "success", Message = "Password reset link:", Data = resetPasswordLink });
         }                   
         return NotFound(new ResponseForemailMessage { Result = "error", Message = "User with the provided email not found." });
+    }
+    [HttpGet("getlocation")]
+    public async Task<string> Getlocation(int districtid, Languages languages)
+    {
+
+      var res=  await _locationService.SendRequestForDistrinctAsync(districtid,languages);
+        return res;
     }
 } 
 public class ResponseForemailMessage

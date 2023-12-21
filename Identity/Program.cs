@@ -22,6 +22,8 @@ builder.Services.AddIdentity<ApplicationUser, Role>().AddEntityFrameworkStores<A
 builder.Services.AddScoped<IAuthService,AuthService>();
 builder.Services.AddScoped<ITokenService,TokenService>();
 builder.Services.addmapping();
+builder.Services.AddHttpClient();
+builder.Services.AddScoped<GetLocationService>();
 builder.Host.UseSerilog((context, services, loggerConfiguration) =>
 {
     loggerConfiguration.ReadFrom.Configuration(context.Configuration);

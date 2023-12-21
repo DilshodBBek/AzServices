@@ -10,4 +10,6 @@ public class RegisteredModel
     public string Password { get; set; }
     public string Email { get; set; }
     public string phone { get; set; }
+    public string region { get; set; }
+    public string District { get; set; }    
 }
