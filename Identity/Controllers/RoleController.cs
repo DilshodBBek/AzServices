@@ -1,5 +1,7 @@
 ﻿using Identity.Domain.Entities;
 using Identity.Domain.Models;
+using Identity.Infrastructure.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,13 +21,14 @@ namespace Identity.Controllers
        // permission Permission=new permission();
         private readonly RoleManager<Role> _roleManager;
         private readonly UserManager<Role> _userManager;
-
-        public RoleController(RoleManager<Role> roleManager, ApplicationDbcontext dbcontext)
+        public RoleController(RoleManager<Role> roleManager, ApplicationDbcontext dbcontext, UserManager<Role> userManager = null)
         {
             _roleManager = roleManager;
             _dbcontext = dbcontext;
+            _userManager = userManager;
         }
         [HttpGet("GetAllRoles")]
+        [AuthefrationAttributeFilter("GetAllRoles")]
         public IActionResult GetAllRoles()
         {
             List<RoleGetDTO> roles = _dbcontext.Roles

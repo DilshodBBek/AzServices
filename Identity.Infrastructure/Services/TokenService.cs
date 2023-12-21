@@ -94,7 +94,7 @@ namespace Identity.Infrastructure.Services
             Token token = new Token()
             {
                 RefreshToken = await GenerateRefreshTokenAsync(),
-                AccessTokenk = accessToken
+                AccessToken = accessToken
 
             };
             return token;

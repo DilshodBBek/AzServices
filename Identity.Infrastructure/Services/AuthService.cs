@@ -79,7 +79,7 @@ public class AuthService : IAuthService
         }
 
     public async Task<ResponseModelForall<Token>> RefreshTokenAsync(Token token) { 
-        ApplicationUser user = await _tokenService.GetClaimsFromExpiredToken(token.AccessTokenk);
+        ApplicationUser user = await _tokenService.GetClaimsFromExpiredToken(token.AccessToken);
         if (!await IsValidRefreshToken(token.RefreshToken, user.Id))
         {
             return new("refresh token is invalid");

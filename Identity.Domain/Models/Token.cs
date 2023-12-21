@@ -8,7 +8,7 @@ namespace Identity.Domain.Models
 {
     public class Token
     {
-        public string AccessTokenk { get; set; }
+        public string AccessToken { get; set; }
         public string RefreshToken { get; set; }
     }
 }
