@@ -10,8 +10,6 @@ namespace Identity.Domain.Entities
         public DbSet<permission> Permissions { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<Role> Roles { get; set; }
-        public DbSet<DistrictEntity> Districts { get; set; }
-        public DbSet<RegionEntity> Regions { get; set; }
         public ApplicationDbcontext(DbContextOptions<ApplicationDbcontext> options) : base(options)
         {
         }

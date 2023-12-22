@@ -1,3 +1,62 @@
 syntax = "proto3";
 
 option csharp_namespace = "Identity.Protos";
+
+service AuthService {
+  rpc LoginAsync (Credential) returns (ResponseModelForall);
+  rpc RefreshTokenAsync (Token) returns (ResponseModelForall);
+  rpc RegisterAsync (RegisteredModel) returns (ResponseModelForall);
+  rpc UpdatePassword (UpdatePasswordRequest) returns (UpdatePasswordResponse);
+  rpc GetAllUsers (EmptyRequest) returns (UserListResponse);
+}
+
+message Credential {
+  string Username = 1;
+  string Password = 2;
+}
+
+message ResponseModelForall {
+  int32 StatusCode = 1;
+  string Error = 2;
+  Token Result = 3;
+}
+
+message RegisteredModel {
+  string Firstname = 1;
+  string Lastname = 2;
+  string Username = 3;
+  string Email = 4;
+  string Password = 5;
+  string phone = 6;
+}
+
+message Token {
+  string AccessToken = 1;
+  string RefreshToken = 2;
+  int64 ExpireTime = 3;
+}
+
+message UpdatePasswordRequest {
+  string UserName = 1;
+  string Password = 2;
+  string NewPassword = 3;
+}
+
+message UpdatePasswordResponse {
+  string Message = 1;
+}
+
+message EmptyRequest {}
+
+message GetUsersDTO {
+  int32 Id = 1;
+  string Firstname = 2;
+  string Lastname = 3;
+  string phone = 4;
+  int32 Regionid = 5;
+  int32 Districtid = 6;
+}
+
+message UserListResponse {
+  repeated GetUsersDTO Users = 1;
+}

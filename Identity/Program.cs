@@ -12,6 +12,8 @@ using Identity.Application.Mapper;
 using Serilog;
 var builder = WebApplication.CreateBuilder(args);
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -23,7 +25,9 @@ builder.Services.AddScoped<IAuthService,AuthService>();
 builder.Services.AddScoped<ITokenService,TokenService>();
 builder.Services.addmapping();
 builder.Services.AddHttpClient();
+builder.Services.AddScoped<RoleService>();
 builder.Services.AddScoped<GetLocationService>();
+builder.Services.AddGrpc();
 builder.Host.UseSerilog((context, services, loggerConfiguration) =>
 {
     loggerConfiguration.ReadFrom.Configuration(context.Configuration);
@@ -67,6 +71,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.UseMiddleware<ExceptionMiddlerWare>();
 app.UseSerilogRequestLogging();
+app.MapGrpcService<AuthService>();
 app.MapControllers();
 
 app.Run();

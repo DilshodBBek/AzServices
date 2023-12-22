@@ -13,4 +13,5 @@ public interface IAuthService
     Task<bool> SaveRefreshToken(string RefreshToken, ApplicationUser user);
     Task<bool> IsValidRefreshToken(string RefreshToken, int userid);
     Task <string>UpdatePassword(string UserName, string Password,string NewPassword);
+    Task<ICollection<GetUsersDTO>> GetAllUsers();
 }

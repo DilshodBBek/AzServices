@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
@@ -203,8 +204,21 @@ public class AuthService : IAuthService
             }
         }
 
+        public async Task<ICollection<GetUsersDTO>> GetAllUsers()
+        {
+            var users = await _dbcontext.Users.ToListAsync();
+            var result = users.Select(x => new GetUsersDTO
+            {
+                Id = x.Id,
+                Firstname = x.Firstname,
+                Lastname = x.Lastname,
+                phone = x.phone,
+                Regionid = x.Regionid,
+                Districtid = x.Districtid
+            }).ToList();
 
-       
+            return result;
+        }
 
     }
 }

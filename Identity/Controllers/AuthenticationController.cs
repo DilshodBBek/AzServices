@@ -70,6 +70,11 @@ public class AuthenticationController : ControllerBase
       var res=  await _locationService.SendRequestForDistrinctAsync(districtid,languages);
         return res;
     }
+    [HttpGet("GetallUsers")]
+    public  async Task <ICollection<GetUsersDTO>> GetallUsers()
+    {
+        return await _authService.GetAllUsers();
+    }
 } 
 public class ResponseForemailMessage
 {
