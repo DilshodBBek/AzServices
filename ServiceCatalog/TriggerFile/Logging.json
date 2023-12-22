@@ -379,3 +379,49 @@ LIMIT @__p_0 OFFSET @__p_0
 2023-12-22 17:13:51.703 +05:00 [INF] Executed action ServiceCatalog.Controllers.PlaystationAreaController.GetPlaystationPage (ServiceCatalog) in 759.4298ms
 2023-12-22 17:13:51.705 +05:00 [INF] Executed endpoint 'ServiceCatalog.Controllers.PlaystationAreaController.GetPlaystationPage (ServiceCatalog)'
 2023-12-22 17:13:51.711 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/api/PlaystationArea/GetPlaystationPage?page=1&pageSize=1 - 200 null application/json; charset=utf-8 795.6816ms
+2023-12-22 19:04:05.594 +05:00 [INF] Now listening on: https://10.10.3.197:7050
+2023-12-22 19:04:05.610 +05:00 [INF] Now listening on: http://10.10.3.197:5253
+2023-12-22 19:04:05.612 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-12-22 19:04:05.612 +05:00 [INF] Hosting environment: Development
+2023-12-22 19:04:05.613 +05:00 [INF] Content root path: C:\Users\suoki\Desktop\Real\ServiceCatalog
+2023-12-22 19:04:22.431 +05:00 [INF] Now listening on: https://10.10.3.197:7050
+2023-12-22 19:04:22.445 +05:00 [INF] Now listening on: http://10.10.3.197:5253
+2023-12-22 19:04:22.446 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-12-22 19:04:22.447 +05:00 [INF] Hosting environment: Development
+2023-12-22 19:04:22.447 +05:00 [INF] Content root path: C:\Users\suoki\Desktop\Real\ServiceCatalog
+2023-12-22 19:04:40.118 +05:00 [INF] Now listening on: https://10.10.3.197:7050
+2023-12-22 19:04:40.130 +05:00 [INF] Now listening on: http://10.10.3.197:5253
+2023-12-22 19:04:40.132 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-12-22 19:04:40.132 +05:00 [INF] Hosting environment: Development
+2023-12-22 19:04:40.133 +05:00 [INF] Content root path: C:\Users\suoki\Desktop\Real\ServiceCatalog
+2023-12-22 19:04:44.961 +05:00 [INF] Request starting HTTP/2 GET https://10.10.3.197:7050/swagger - null null
+2023-12-22 19:04:45.026 +05:00 [INF] Request finished HTTP/2 GET https://10.10.3.197:7050/swagger - 301 0 null 65.4285ms
+2023-12-22 19:04:45.031 +05:00 [INF] Request starting HTTP/2 GET https://10.10.3.197:7050/swagger/index.html - null null
+2023-12-22 19:04:45.086 +05:00 [INF] Request finished HTTP/2 GET https://10.10.3.197:7050/swagger/index.html - 200 null text/html;charset=utf-8 54.8774ms
+2023-12-22 19:04:45.115 +05:00 [INF] Request starting HTTP/2 GET https://10.10.3.197:7050/swagger/swagger-ui.css - null null
+2023-12-22 19:04:45.116 +05:00 [INF] Request starting HTTP/2 GET https://10.10.3.197:7050/swagger/swagger-ui-bundle.js - null null
+2023-12-22 19:04:45.116 +05:00 [INF] Request starting HTTP/2 GET https://10.10.3.197:7050/_framework/aspnetcore-browser-refresh.js - null null
+2023-12-22 19:04:45.116 +05:00 [INF] Request starting HTTP/2 GET https://10.10.3.197:7050/swagger/swagger-ui-standalone-preset.js - null null
+2023-12-22 19:04:45.122 +05:00 [INF] Request starting HTTP/2 GET https://10.10.3.197:7050/_vs/browserLink - null null
+2023-12-22 19:04:45.124 +05:00 [INF] Request finished HTTP/2 GET https://10.10.3.197:7050/_framework/aspnetcore-browser-refresh.js - 200 13764 application/javascript; charset=utf-8 8.6576ms
+2023-12-22 19:04:45.138 +05:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2023-12-22 19:04:45.138 +05:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2023-12-22 19:04:45.140 +05:00 [INF] Request finished HTTP/2 GET https://10.10.3.197:7050/swagger/swagger-ui.css - 200 144929 text/css 24.4108ms
+2023-12-22 19:04:45.142 +05:00 [INF] Request finished HTTP/2 GET https://10.10.3.197:7050/swagger/swagger-ui-standalone-preset.js - 200 312163 text/javascript 25.9219ms
+2023-12-22 19:04:45.159 +05:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-12-22 19:04:45.161 +05:00 [INF] Request finished HTTP/2 GET https://10.10.3.197:7050/swagger/swagger-ui-bundle.js - 200 1061536 text/javascript 45.036ms
+2023-12-22 19:04:45.164 +05:00 [INF] Request finished HTTP/2 GET https://10.10.3.197:7050/_vs/browserLink - 200 null text/javascript; charset=UTF-8 40.747ms
+2023-12-22 19:04:45.285 +05:00 [INF] Request starting HTTP/2 GET https://10.10.3.197:7050/swagger/v1/swagger.json - null null
+2023-12-22 19:04:45.313 +05:00 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Ambiguous HTTP method for action - ServiceCatalog.Controllers.BookingController.ChekingBookingStatusForPlaystation (ServiceCatalog). Actions require an explicit HttpMethod binding for Swagger/OpenAPI 3.0
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2023-12-22 19:04:45.329 +05:00 [INF] Request starting HTTP/2 GET https://10.10.3.197:7050/swagger/favicon-32x32.png - null null
+2023-12-22 19:04:45.345 +05:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2023-12-22 19:04:45.347 +05:00 [INF] Request finished HTTP/2 GET https://10.10.3.197:7050/swagger/v1/swagger.json - 500 null text/plain; charset=utf-8 62.1291ms
+2023-12-22 19:04:45.347 +05:00 [INF] Request finished HTTP/2 GET https://10.10.3.197:7050/swagger/favicon-32x32.png - 200 628 image/png 18.7582ms

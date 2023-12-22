@@ -41,8 +41,11 @@ namespace ServiceCatalog
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
 			builder.Services.AddSerilog(logger);
-            #region Db
-            builder.Services.AddDbContext<AppDbContext>(option => option.UseNpgsql(builder.Configuration.GetConnectionString("ShokirsDb")));
+			#region httpClient
+			builder.Services.AddHttpClient();
+			#endregion
+			#region Db
+			builder.Services.AddDbContext<AppDbContext>(option => option.UseNpgsql(builder.Configuration.GetConnectionString("ShokirsDb")));
             #endregion
             #region PlaystationServices
             builder.Services.AddScoped<IRepositoryPlaystationArea, PlaystationRepository>();
