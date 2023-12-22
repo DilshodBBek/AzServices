@@ -1,9 +1,7 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SP.Application.Services;
 using SP.Domain.Entities.LocationEntities;
 using SP.Domain.Models;
-using SP.Domain.Models.RegionDTO;
 
 namespace SP.Controllers;
 
@@ -11,52 +9,56 @@ namespace SP.Controllers;
 [ApiController]
 public class RegionController : ControllerBase
 {
-    private readonly IRegionService _regionService;
-    private readonly IMapper _mapper;
+    private readonly IRegionService<RegionEntity> _regionService;
+    private readonly ILogger<RegionController> _logger;
 
-    public RegionController(IRegionService regionService)
+    public RegionController(IRegionService<RegionEntity> regionService, ILogger<RegionController> logger)
     {
         _regionService = regionService;
+        _logger = logger;
     }
-     
+
     [HttpPost]
-    public async Task<ResponseModel<bool>> CreateAsync(RegionCreateDTO regionCreateDTO)
+    public async Task<ResponseModel<RegionEntity>> CreateAsync(RegionEntity location)
     {
-        var mappedRegion = new RegionEntity
-        {
-            RegionName = regionCreateDTO.RegionName
-        };
-
-        var regionEntity = new RegionCreateDTO
-        {
-            RegionName = mappedRegion.RegionName
-        };
-
-        return new(await _regionService.CreateAsync(mappedRegion));
+        Task<RegionEntity> createdRegion = _regionService.CreateAsync(location);
+        return new(location);
     }
 
     [HttpGet]
-    public async Task<ResponseModel<IEnumerable<RegionGetDTO>>> GetAll()
+    public async Task<ResponseModel<IEnumerable<RegionEntity>>> GetAll()
     {
-        IEnumerable<RegionGetDTO> regionGetDTOs;
-
-        regionGetDTOs = (await _regionService.GetAllAsync())
-            .Select(x => new RegionGetDTO
-            {
-                RegionName = x.RegionName
-            });
-
-        return new(regionGetDTOs);
+        IEnumerable<RegionEntity> getAllRegions = _regionService.GetAll();
+        return new(getAllRegions);
     }
 
     [HttpPut]
-    public async Task<ResponseModel<RegionGetDTO>> Update([FromBody] RegionUpdateRegion regionUpdateRegionDTO)
+    public async Task<ResponseModel<bool>> Update(int id, [FromBody] RegionEntity location)
     {
-        RegionEntity mapped = _mapper.Map<RegionEntity>(regionUpdateRegionDTO);
-        bool res = await _regionService.UpdateAsync(mapped);
-        RegionGetDTO regionGetDTO = _mapper.Map<RegionGetDTO>(mapped);
-
-        return new(regionGetDTO);
+        bool mapped = await _regionService.Update(location);
+        return new(mapped);
     }
 
+    [HttpDelete]
+    public async Task<ResponseModel<bool>> DeleteAsync(int id)
+    {
+        try
+        {
+            bool deletedId = await _regionService.Delete(id);
+            string s = deletedId ? "Delete" : "There is no Id";
+            return new(s);
+        }
+        catch
+        {
+
+            return new(false);
+        }
+    }
+
+    [HttpGet]
+    public RegionEntity GetById(int id)
+    {
+        RegionEntity getById = _regionService.GetById(id);
+        return getById;
+    }
 }

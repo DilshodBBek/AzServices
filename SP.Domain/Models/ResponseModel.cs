@@ -8,9 +8,16 @@ public class ResponseModel<T>
 {
     private DistrictEntity _districtEntity;
     private RegionCreateDTO _regionCreateDTO;
+    private RegionEntity location;
+
     public ResponseModel(RegionCreateDTO regionCreateDTO)
     {
         _regionCreateDTO = regionCreateDTO;
+    }
+
+    public ResponseModel(RegionEntity location)
+    {
+        this.location = location;
     }
 
     public ResponseModel(T result, HttpStatusCode statusCode = HttpStatusCode.OK)

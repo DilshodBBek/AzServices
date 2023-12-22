@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using SP.Application.Services;
+using SP.Domain.Entities.BookingEntity;
+using SP.Domain.Entities.Categories;
+using SP.Domain.Entities.LocationEntities;
 using SP.Infrastructure.DataAccess;
 using SP.Infrastructure.Services;
 
@@ -13,7 +16,10 @@ public class Program
 
         // Add services to the container.
 
-        builder.Services.AddScoped<IRegionService, RegionService>();
+        builder.Services.AddScoped<IRegionService<RegionEntity>, RegionService>();
+        builder.Services.AddScoped<IDistrictService<DistrictEntity>, DistrictService>();
+        builder.Services.AddScoped<ICategoryService<CategoryEntity>, CategoryService>();
+        builder.Services.AddScoped<IBookingStatusService<BookingStatusEntity>, BookingStatusService>();
 
         builder.Services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

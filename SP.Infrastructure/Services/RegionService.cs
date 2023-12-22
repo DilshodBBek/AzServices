@@ -1,60 +1,85 @@
-﻿using SP.Application.Repository;
+﻿using Microsoft.EntityFrameworkCore;
+using SP.Application.Repository;
 using SP.Application.Services;
 using SP.Domain.Entities.LocationEntities;
-using SP.Domain.Models;
-using SP.Domain.Models.RegionDTO;
 using SP.Infrastructure.DataAccess;
 
 namespace SP.Infrastructure.Services;
 
-public class RegionService : IRegionService
+public class RegionService : IRegionService<RegionEntity>
 {
-    private readonly StadiumDbContext _stadiumDbContext;
+    private readonly StadiumDbContext _context;
 
-    public RegionService(StadiumDbContext stadiumDbContext)
+    public RegionService(StadiumDbContext context)
     {
-        _stadiumDbContext = stadiumDbContext;
+        _context = context;
     }
 
-    public async Task<bool> CreateAsync(RegionEntity entity)
+    public async Task<RegionEntity?> CreateAsync(RegionEntity location)
     {
-        await _stadiumDbContext.Regions.AddAsync(entity);
-        int effectedRows = await _stadiumDbContext.SaveChangesAsync();
-        return effectedRows > 0;
+        // Check if the RegionName is already taken
+        if (_context.Districts.Where(x => x.DistrictNameUz == location.RegionNameUz).Count() is 0
+            && _context.Districts.Where(x => x.DistrictNameRu == location.RegionNameRu).Count() is 0
+            && _context.Districts.Where(x => x.DistrictNameEn == location.RegionNameEn).Count() is 0)
+        {
+            await _context.AddAsync(location);
+            _context?.SaveChangesAsync();
+            return location;
+        }
+        else
+        {
+            return null;
+        }
     }
 
-    public async Task<bool> DeleteAsync(int Id)
+    public async Task<bool> Delete(int id)
     {
-        var entity = await _stadiumDbContext.Regions.FindAsync(Id);
-        if (entity == null)
+        var deleteRegion = await _context.Regions.FirstAsync(x => x.RegionId == id);
+        if (deleteRegion != null)
+        {
+            _context.Regions.Remove(deleteRegion);
+            _context.SaveChangesAsync();
+            return true;
+        }
+        else
+        {
             return false;
-
-        _stadiumDbContext.Remove(entity);
-        await _stadiumDbContext.SaveChangesAsync();
-        return true;
+        }
     }
 
-    public async Task<ResponseModel<IEnumerable<RegionGetDTO>>> GetAllAsync()
+    public async Task<bool> Update(RegionEntity location)
     {
-        throw new NotImplementedException();
+        var updateRegion = _context.Regions.FirstOrDefault(x => x.RegionId == location.RegionId);
+        if (updateRegion != null)
+        {
+            updateRegion.RegionNameUz = location.RegionNameUz;
+            updateRegion.RegionNameRu = location.RegionNameRu;
+            updateRegion.RegionNameEn = location.RegionNameEn;
+            _context.Regions.Update(updateRegion);
+            _context.SaveChanges();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
-    public async Task<RegionEntity> GetByIdAsync(int Id)
+    public RegionEntity? GetById(int id)
     {
-        var regionEntity = await _stadiumDbContext.Regions.FindAsync(Id);
-        return regionEntity;
+        var getRegion = _context.Regions.FirstOrDefault(x => x.RegionId == Convert.ToInt32(id));
+        if (getRegion != null)
+        {
+            return getRegion;
+        }
+        else
+        {
+            return null;
+        }
     }
 
-    public async Task<bool> UpdateAsync(RegionEntity entity)
+    IEnumerable<RegionEntity> IRepository<RegionEntity>.GetAll()
     {
-        _stadiumDbContext.Regions.Update(entity);
-        var executedRows = await _stadiumDbContext.SaveChangesAsync();
-
-        return executedRows > 0;
-    }
-
-    Task<IEnumerable<RegionEntity>> IRepository<RegionEntity>.GetAllAsync()
-    {
-        throw new NotImplementedException();
+        return _context.Regions.ToList();
     }
 }

@@ -6,5 +6,7 @@ public class DistrictEntity
 {
     [Key]
     public int DistrictId { get; set; }
-    public string? DistrictName { get; set; }
+    public string? DistrictNameUz { get; set; }
+    public string? DistrictNameRu { get; set; }
+    public string? DistrictNameEn { get; set; }
 }

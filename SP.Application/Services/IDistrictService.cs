@@ -3,7 +3,7 @@ using SP.Domain.Entities.LocationEntities;
 
 namespace SP.Application.Services;
 
-public interface IRegionService<T> : IRepository<RegionEntity>
+public interface IDistrictService<T> : IRepository<DistrictEntity>
 {
 
 }

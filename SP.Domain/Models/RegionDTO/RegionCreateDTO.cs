@@ -1,6 +1,6 @@
 ﻿namespace SP.Domain.Models.RegionDTO;
 
-public class RegionCreateDTO
+public class RegionCreateDTO : RegionBaseDTO
 {
-    public string? RegionName { get; set; }
+
 }
