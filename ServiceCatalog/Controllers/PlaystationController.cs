@@ -23,6 +23,7 @@ namespace ServiceCatalog.Controllers
             _mapper = mapper;
             _service =service;
         }
+
         [HttpPost]
         public async Task<IActionResult> CreatePlaystation(PlaystationCreateDTO obj)
         {
@@ -31,6 +32,7 @@ namespace ServiceCatalog.Controllers
             if (createdPlay) return Ok();
             return BadRequest();
         }
+       
         [HttpGet]
         public async Task<IActionResult> GetByIdPlaystation(int Id)
         {
@@ -38,6 +40,7 @@ namespace ServiceCatalog.Controllers
             if (createdPlaystation != null) return Ok(createdPlaystation);
             return BadRequest();
         }
+       
         [HttpGet]
         public async Task<IActionResult> GetAllPlaystation()
         {
@@ -45,6 +48,7 @@ namespace ServiceCatalog.Controllers
             if (playstations.Count()>=1) return Ok(playstations);
             return BadRequest();
         }
+        
         [HttpDelete]
         public async Task<ResponseModel<bool>> DeletePlaystation(int Id)
         {

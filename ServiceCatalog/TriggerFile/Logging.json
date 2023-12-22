@@ -1,0 +1,381 @@
+2023-12-19 19:15:54.873 +05:00 [INF] Now listening on: https://localhost:7050
+2023-12-19 19:15:54.890 +05:00 [INF] Now listening on: http://localhost:5253
+2023-12-19 19:15:54.892 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-12-19 19:15:54.893 +05:00 [INF] Hosting environment: Development
+2023-12-19 19:15:54.894 +05:00 [INF] Content root path: C:\Users\suoki\Desktop\Real\ServiceCatalog
+2023-12-19 19:15:56.346 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/swagger - null null
+2023-12-19 19:15:56.424 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/swagger - 301 0 null 80.1382ms
+2023-12-19 19:15:56.446 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/swagger/index.html - null null
+2023-12-19 19:15:56.503 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/swagger/index.html - 200 null text/html;charset=utf-8 56.8932ms
+2023-12-19 19:15:56.621 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/swagger/swagger-ui-bundle.js - null null
+2023-12-19 19:15:56.621 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/swagger/swagger-ui.css - null null
+2023-12-19 19:15:56.621 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/swagger/swagger-ui-standalone-preset.js - null null
+2023-12-19 19:15:56.622 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/_framework/aspnetcore-browser-refresh.js - null null
+2023-12-19 19:15:56.633 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/_framework/aspnetcore-browser-refresh.js - 200 13764 application/javascript; charset=utf-8 10.2978ms
+2023-12-19 19:15:56.641 +05:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2023-12-19 19:15:56.641 +05:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2023-12-19 19:15:56.644 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/swagger/swagger-ui.css - 200 144929 text/css 22.6774ms
+2023-12-19 19:15:56.644 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/swagger/swagger-ui-standalone-preset.js - 200 312163 text/javascript 23.0333ms
+2023-12-19 19:15:56.646 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/_vs/browserLink - null null
+2023-12-19 19:15:56.664 +05:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-12-19 19:15:56.666 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/swagger/swagger-ui-bundle.js - 200 1061536 text/javascript 44.8786ms
+2023-12-19 19:15:56.689 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/_vs/browserLink - 200 null text/javascript; charset=UTF-8 42.9351ms
+2023-12-19 19:15:56.894 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/swagger/v1/swagger.json - null null
+2023-12-19 19:15:56.998 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 104.1137ms
+2023-12-19 19:15:57.065 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/swagger/favicon-32x32.png - null null
+2023-12-19 19:15:57.068 +05:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2023-12-19 19:15:57.069 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/swagger/favicon-32x32.png - 200 628 image/png 4.3273ms
+2023-12-19 19:16:04.538 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7050/api/File/UploadFile?baseId=1 - multipart/form-data; boundary=----WebKitFormBoundaryfcsgyLANrQEeb5B0 4093
+2023-12-19 19:16:04.546 +05:00 [INF] Executing endpoint 'Payment.UI.Controllers.FileController.UploadFile (ServiceCatalog)'
+2023-12-19 19:16:04.578 +05:00 [INF] Route matched with {action = "UploadFile", controller = "File"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UploadFile(Microsoft.AspNetCore.Http.IFormFile, Int32) on controller Payment.UI.Controllers.FileController (ServiceCatalog).
+2023-12-19 19:16:06.207 +05:00 [INF] Executed action Payment.UI.Controllers.FileController.UploadFile (ServiceCatalog) in 1623.3573ms
+2023-12-19 19:16:06.213 +05:00 [INF] Executed endpoint 'Payment.UI.Controllers.FileController.UploadFile (ServiceCatalog)'
+2023-12-19 19:16:06.217 +05:00 [ERR] An unhandled exception has occurred while executing the request.
+System.UnauthorizedAccessException: Access to the path 'C:\Users\suoki\Desktop\Real\ServiceCatalog\Uploads\2718484c-79e8-4c84-a340-75f7fcfc3a0b_entrepreneursdata.csv' is denied.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at ServiceCatalog.Application.Services.FileContent.FileContentService.Upload(IFormFile formFile, Int32 baseId) in C:\Users\suoki\Desktop\Real\ServiceCatalog.Application\Services\FileContent\FileContentService.cs:line 45
+   at Payment.UI.Controllers.FileController.UploadFile(IFormFile formFile, Int32 baseId) in C:\Users\suoki\Desktop\Real\ServiceCatalog\Controllers\FileController.cs:line 20
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2023-12-19 19:16:06.267 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7050/api/File/UploadFile?baseId=1 - 500 null text/plain; charset=utf-8 1729.0805ms
+2023-12-19 19:38:23.636 +05:00 [INF] Now listening on: https://localhost:7050
+2023-12-19 19:38:23.650 +05:00 [INF] Now listening on: http://localhost:5253
+2023-12-19 19:38:23.651 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-12-19 19:38:23.652 +05:00 [INF] Hosting environment: Development
+2023-12-19 19:38:23.652 +05:00 [INF] Content root path: C:\Users\suoki\Desktop\Real\ServiceCatalog
+2023-12-19 19:38:24.884 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/swagger/index.html - null null
+2023-12-19 19:38:25.017 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/swagger/index.html - 200 null text/html;charset=utf-8 135.0981ms
+2023-12-19 19:38:25.072 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/_framework/aspnetcore-browser-refresh.js - null null
+2023-12-19 19:38:25.079 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/_framework/aspnetcore-browser-refresh.js - 200 13764 application/javascript; charset=utf-8 6.9432ms
+2023-12-19 19:38:25.084 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/_vs/browserLink - null null
+2023-12-19 19:38:25.125 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/_vs/browserLink - 200 null text/javascript; charset=UTF-8 40.6811ms
+2023-12-19 19:38:25.311 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/swagger/v1/swagger.json - null null
+2023-12-19 19:38:25.426 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 115.2953ms
+2023-12-19 19:38:39.923 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7050/api/File/UploadFile?baseId=11 - multipart/form-data; boundary=----WebKitFormBoundaryWmRhZuIInDwAmXuc 3514
+2023-12-19 19:38:39.930 +05:00 [INF] Executing endpoint 'Payment.UI.Controllers.FileController.UploadFile (ServiceCatalog)'
+2023-12-19 19:38:39.955 +05:00 [INF] Route matched with {action = "UploadFile", controller = "File"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UploadFile(Microsoft.AspNetCore.Http.IFormFile, Int32) on controller Payment.UI.Controllers.FileController (ServiceCatalog).
+2023-12-19 19:38:53.277 +05:00 [INF] Executed action Payment.UI.Controllers.FileController.UploadFile (ServiceCatalog) in 13316.7319ms
+2023-12-19 19:38:53.279 +05:00 [INF] Executed endpoint 'Payment.UI.Controllers.FileController.UploadFile (ServiceCatalog)'
+2023-12-19 19:38:53.283 +05:00 [ERR] An unhandled exception has occurred while executing the request.
+System.UnauthorizedAccessException: Access to the path 'C:\Users\suoki\Desktop\Real\ServiceCatalog\Uploads\7877af42-28e2-4dc1-8e38-4ca2a40556c2_phonesdata.csv' is denied.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at ServiceCatalog.Application.Services.FileContent.FileContentService.Upload(IFormFile formFile, Int32 baseId) in C:\Users\suoki\Desktop\Real\ServiceCatalog.Application\Services\FileContent\FileContentService.cs:line 45
+   at Payment.UI.Controllers.FileController.UploadFile(IFormFile formFile, Int32 baseId) in C:\Users\suoki\Desktop\Real\ServiceCatalog\Controllers\FileController.cs:line 20
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2023-12-19 19:38:53.316 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7050/api/File/UploadFile?baseId=11 - 500 null text/plain; charset=utf-8 13392.9971ms
+2023-12-22 16:56:02.639 +05:00 [INF] Now listening on: https://localhost:7050
+2023-12-22 16:56:02.652 +05:00 [INF] Now listening on: http://localhost:5253
+2023-12-22 16:56:02.653 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-12-22 16:56:02.655 +05:00 [INF] Hosting environment: Development
+2023-12-22 16:56:02.655 +05:00 [INF] Content root path: C:\Users\suoki\Desktop\Real\ServiceCatalog
+2023-12-22 16:56:03.768 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/swagger/index.html - null null
+2023-12-22 16:56:03.941 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/swagger/index.html - 200 null text/html;charset=utf-8 175.1242ms
+2023-12-22 16:56:04.040 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/_framework/aspnetcore-browser-refresh.js - null null
+2023-12-22 16:56:04.046 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/_framework/aspnetcore-browser-refresh.js - 200 13764 application/javascript; charset=utf-8 5.6609ms
+2023-12-22 16:56:04.101 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/_vs/browserLink - null null
+2023-12-22 16:56:04.160 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/_vs/browserLink - 200 null text/javascript; charset=UTF-8 58.3225ms
+2023-12-22 16:56:04.361 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/swagger/v1/swagger.json - null null
+2023-12-22 16:56:04.453 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 92.2555ms
+2023-12-22 16:56:20.421 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7050/api/File/UploadFile?baseId=1 - multipart/form-data; boundary=----WebKitFormBoundaryK4ykcBYAYvuEhUBF 4383
+2023-12-22 16:56:20.431 +05:00 [INF] Executing endpoint 'Payment.UI.Controllers.FileController.UploadFile (ServiceCatalog)'
+2023-12-22 16:56:20.461 +05:00 [INF] Route matched with {action = "UploadFile", controller = "File"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UploadFile(Microsoft.AspNetCore.Http.IFormFile, Int32) on controller Payment.UI.Controllers.FileController (ServiceCatalog).
+2023-12-22 16:56:21.610 +05:00 [INF] Executed action Payment.UI.Controllers.FileController.UploadFile (ServiceCatalog) in 1144.5745ms
+2023-12-22 16:56:21.612 +05:00 [INF] Executed endpoint 'Payment.UI.Controllers.FileController.UploadFile (ServiceCatalog)'
+2023-12-22 16:56:21.616 +05:00 [ERR] An unhandled exception has occurred while executing the request.
+System.UnauthorizedAccessException: Access to the path 'C:\Users\suoki\Desktop\Real\ServiceCatalog\Uploads\170e3dab-a8a1-4eae-8a76-c45d294e29ca_entrepreneurs_data.csv' is denied.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at ServiceCatalog.Application.Services.FileContent.FileContentService.Upload(IFormFile formFile, Int32 baseId) in C:\Users\suoki\Desktop\Real\ServiceCatalog.Application\Services\FileContent\FileContentService.cs:line 45
+   at Payment.UI.Controllers.FileController.UploadFile(IFormFile formFile, Int32 baseId) in C:\Users\suoki\Desktop\Real\ServiceCatalog\Controllers\FileController.cs:line 20
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2023-12-22 16:56:21.646 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7050/api/File/UploadFile?baseId=1 - 500 null text/plain; charset=utf-8 1225.0525ms
+2023-12-22 17:04:08.657 +05:00 [INF] Now listening on: https://localhost:7050
+2023-12-22 17:04:08.669 +05:00 [INF] Now listening on: http://localhost:5253
+2023-12-22 17:04:08.670 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-12-22 17:04:08.671 +05:00 [INF] Hosting environment: Development
+2023-12-22 17:04:08.671 +05:00 [INF] Content root path: C:\Users\suoki\Desktop\Real\ServiceCatalog
+2023-12-22 17:04:08.896 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/swagger/index.html - null null
+2023-12-22 17:04:08.996 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/swagger/index.html - 200 null text/html;charset=utf-8 102.403ms
+2023-12-22 17:04:09.012 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/_framework/aspnetcore-browser-refresh.js - null null
+2023-12-22 17:04:09.012 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/_vs/browserLink - null null
+2023-12-22 17:04:09.016 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/_framework/aspnetcore-browser-refresh.js - 200 13764 application/javascript; charset=utf-8 3.4927ms
+2023-12-22 17:04:09.040 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/_vs/browserLink - 200 null text/javascript; charset=UTF-8 27.9179ms
+2023-12-22 17:04:09.264 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/swagger/v1/swagger.json - null null
+2023-12-22 17:04:09.335 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 70.3526ms
+2023-12-22 17:04:21.482 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7050/api/File/UploadFile?baseId=1 - multipart/form-data; boundary=----WebKitFormBoundarySY44osLL1GccmNf8 4093
+2023-12-22 17:04:21.489 +05:00 [INF] Executing endpoint 'Payment.UI.Controllers.FileController.UploadFile (ServiceCatalog)'
+2023-12-22 17:04:21.502 +05:00 [INF] Route matched with {action = "UploadFile", controller = "File"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UploadFile(Microsoft.AspNetCore.Http.IFormFile, Int32) on controller Payment.UI.Controllers.FileController (ServiceCatalog).
+2023-12-22 17:04:22.199 +05:00 [INF] Executed action Payment.UI.Controllers.FileController.UploadFile (ServiceCatalog) in 693.21ms
+2023-12-22 17:04:22.200 +05:00 [INF] Executed endpoint 'Payment.UI.Controllers.FileController.UploadFile (ServiceCatalog)'
+2023-12-22 17:04:22.203 +05:00 [ERR] An unhandled exception has occurred while executing the request.
+System.UnauthorizedAccessException: Access to the path 'C:\Users\suoki\Desktop\Real\ServiceCatalog\Uploads\d63fa180-66f2-4a39-82cf-1ab6e2a8f4e9_entrepreneursdata.csv' is denied.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at ServiceCatalog.Application.Services.FileContent.FileContentService.Upload(IFormFile formFile, Int32 baseId) in C:\Users\suoki\Desktop\Real\ServiceCatalog.Application\Services\FileContent\FileContentService.cs:line 45
+   at Payment.UI.Controllers.FileController.UploadFile(IFormFile formFile, Int32 baseId) in C:\Users\suoki\Desktop\Real\ServiceCatalog\Controllers\FileController.cs:line 20
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2023-12-22 17:04:22.220 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7050/api/File/UploadFile?baseId=1 - 500 null text/plain; charset=utf-8 737.8076ms
+2023-12-22 17:07:34.651 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7050/api/File/UploadFile?baseId=1 - multipart/form-data; boundary=----WebKitFormBoundaryCvLtHhd9OjBiZKkd 4093
+2023-12-22 17:07:34.655 +05:00 [INF] Executing endpoint 'Payment.UI.Controllers.FileController.UploadFile (ServiceCatalog)'
+2023-12-22 17:07:34.656 +05:00 [INF] Route matched with {action = "UploadFile", controller = "File"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UploadFile(Microsoft.AspNetCore.Http.IFormFile, Int32) on controller Payment.UI.Controllers.FileController (ServiceCatalog).
+2023-12-22 17:07:34.670 +05:00 [INF] Executed action Payment.UI.Controllers.FileController.UploadFile (ServiceCatalog) in 12.1481ms
+2023-12-22 17:07:34.672 +05:00 [INF] Executed endpoint 'Payment.UI.Controllers.FileController.UploadFile (ServiceCatalog)'
+2023-12-22 17:07:34.673 +05:00 [ERR] An unhandled exception has occurred while executing the request.
+System.UnauthorizedAccessException: Access to the path 'C:\Users\suoki\Desktop\Real\ServiceCatalog\Uploads\58cb726b-df29-4bec-aba7-2fad9c52e14a_entrepreneursdata.csv' is denied.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at ServiceCatalog.Application.Services.FileContent.FileContentService.Upload(IFormFile formFile, Int32 baseId) in C:\Users\suoki\Desktop\Real\ServiceCatalog.Application\Services\FileContent\FileContentService.cs:line 45
+   at Payment.UI.Controllers.FileController.UploadFile(IFormFile formFile, Int32 baseId) in C:\Users\suoki\Desktop\Real\ServiceCatalog\Controllers\FileController.cs:line 20
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2023-12-22 17:07:34.684 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7050/api/File/UploadFile?baseId=1 - 500 null text/plain; charset=utf-8 32.1311ms
+2023-12-22 17:07:36.486 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7050/api/File/UploadFile?baseId=1 - multipart/form-data; boundary=----WebKitFormBoundaryM2wIKAO3UH3bSbDf 4093
+2023-12-22 17:07:36.494 +05:00 [INF] Executing endpoint 'Payment.UI.Controllers.FileController.UploadFile (ServiceCatalog)'
+2023-12-22 17:07:36.496 +05:00 [INF] Route matched with {action = "UploadFile", controller = "File"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UploadFile(Microsoft.AspNetCore.Http.IFormFile, Int32) on controller Payment.UI.Controllers.FileController (ServiceCatalog).
+2023-12-22 17:07:36.500 +05:00 [INF] Executed action Payment.UI.Controllers.FileController.UploadFile (ServiceCatalog) in 2.6473ms
+2023-12-22 17:07:36.501 +05:00 [INF] Executed endpoint 'Payment.UI.Controllers.FileController.UploadFile (ServiceCatalog)'
+2023-12-22 17:07:36.502 +05:00 [ERR] An unhandled exception has occurred while executing the request.
+System.UnauthorizedAccessException: Access to the path 'C:\Users\suoki\Desktop\Real\ServiceCatalog\Uploads\60e4d965-c3ba-4c9a-b2dc-88a6242e7d55_entrepreneursdata.csv' is denied.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at ServiceCatalog.Application.Services.FileContent.FileContentService.Upload(IFormFile formFile, Int32 baseId) in C:\Users\suoki\Desktop\Real\ServiceCatalog.Application\Services\FileContent\FileContentService.cs:line 45
+   at Payment.UI.Controllers.FileController.UploadFile(IFormFile formFile, Int32 baseId) in C:\Users\suoki\Desktop\Real\ServiceCatalog\Controllers\FileController.cs:line 20
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2023-12-22 17:07:36.508 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7050/api/File/UploadFile?baseId=1 - 500 null text/plain; charset=utf-8 21.6059ms
+2023-12-22 17:07:41.889 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7050/api/File/UploadFile?baseId=1 - multipart/form-data; boundary=----WebKitFormBoundaryLysKw2hy5ZVf611A 3514
+2023-12-22 17:07:41.893 +05:00 [INF] Executing endpoint 'Payment.UI.Controllers.FileController.UploadFile (ServiceCatalog)'
+2023-12-22 17:07:41.895 +05:00 [INF] Route matched with {action = "UploadFile", controller = "File"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UploadFile(Microsoft.AspNetCore.Http.IFormFile, Int32) on controller Payment.UI.Controllers.FileController (ServiceCatalog).
+2023-12-22 17:07:41.899 +05:00 [INF] Executed action Payment.UI.Controllers.FileController.UploadFile (ServiceCatalog) in 2.6411ms
+2023-12-22 17:07:41.901 +05:00 [INF] Executed endpoint 'Payment.UI.Controllers.FileController.UploadFile (ServiceCatalog)'
+2023-12-22 17:07:41.902 +05:00 [ERR] An unhandled exception has occurred while executing the request.
+System.UnauthorizedAccessException: Access to the path 'C:\Users\suoki\Desktop\Real\ServiceCatalog\Uploads\7f137e4d-4bf7-49c6-bff9-bb170a3ab932_phonesdata.csv' is denied.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at ServiceCatalog.Application.Services.FileContent.FileContentService.Upload(IFormFile formFile, Int32 baseId) in C:\Users\suoki\Desktop\Real\ServiceCatalog.Application\Services\FileContent\FileContentService.cs:line 45
+   at Payment.UI.Controllers.FileController.UploadFile(IFormFile formFile, Int32 baseId) in C:\Users\suoki\Desktop\Real\ServiceCatalog\Controllers\FileController.cs:line 20
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2023-12-22 17:07:41.910 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7050/api/File/UploadFile?baseId=1 - 500 null text/plain; charset=utf-8 21.0152ms
+2023-12-22 17:08:07.662 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/swagger/v1/swagger.json - null null
+2023-12-22 17:08:07.674 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 11.8194ms
+2023-12-22 17:08:07.797 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/favicon.ico - null null
+2023-12-22 17:08:07.800 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/favicon.ico - 404 0 null 2.5394ms
+2023-12-22 17:08:07.803 +05:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7050/favicon.ico, Response status code: 404
+2023-12-22 17:12:31.339 +05:00 [INF] Now listening on: https://localhost:7050
+2023-12-22 17:12:31.353 +05:00 [INF] Now listening on: http://localhost:5253
+2023-12-22 17:12:31.355 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-12-22 17:12:31.355 +05:00 [INF] Hosting environment: Development
+2023-12-22 17:12:31.356 +05:00 [INF] Content root path: C:\Users\suoki\Desktop\Real\ServiceCatalog
+2023-12-22 17:12:32.121 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/swagger/index.html - null null
+2023-12-22 17:12:32.287 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/swagger/index.html - 200 null text/html;charset=utf-8 167.6593ms
+2023-12-22 17:12:32.328 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/_framework/aspnetcore-browser-refresh.js - null null
+2023-12-22 17:12:32.328 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/_vs/browserLink - null null
+2023-12-22 17:12:32.337 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/_framework/aspnetcore-browser-refresh.js - 200 13764 application/javascript; charset=utf-8 8.7053ms
+2023-12-22 17:12:32.401 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/_vs/browserLink - 200 null text/javascript; charset=UTF-8 72.2143ms
+2023-12-22 17:12:32.518 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/swagger/v1/swagger.json - null null
+2023-12-22 17:12:32.623 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 105.2112ms
+2023-12-22 17:12:43.351 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/api/PlaystationArea/GetPlaystationPage?page=1&pageSize=12 - null null
+2023-12-22 17:12:43.365 +05:00 [INF] Executing endpoint 'ServiceCatalog.Controllers.PlaystationAreaController.GetPlaystationPage (ServiceCatalog)'
+2023-12-22 17:12:43.402 +05:00 [INF] Route matched with {action = "GetPlaystationPage", controller = "PlaystationArea"}. Executing controller action with signature System.Threading.Tasks.Task`1[ServiceCatalog.Domain.Entity.ResponseModel.ResponseModel`1[System.Collections.Generic.IEnumerable`1[ServiceCatalog.Domain.Entity.Playstation.PlaystationArea]]] GetPlaystationPage(Int32, Int32) on controller ServiceCatalog.Controllers.PlaystationAreaController (ServiceCatalog).
+2023-12-22 17:12:44.208 +05:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM "Base" AS b
+WHERE b."Discriminator" = 'PlaystationArea'
+2023-12-22 17:12:44.231 +05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2023-12-22 17:12:44.233 +05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2023-12-22 17:12:44.263 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT b."Id", b."CloseTime", b."Descryption", b."Discriminator", b."Location", b."Name", b."OpenTime", b."PhoneNumber", b."UserId"
+FROM "Base" AS b
+WHERE b."Discriminator" = 'PlaystationArea'
+LIMIT @__p_0 OFFSET @__p_0
+2023-12-22 17:12:44.271 +05:00 [INF] Executing ObjectResult, writing value of type 'ServiceCatalog.Domain.Entity.ResponseModel.ResponseModel`1[[System.Collections.Generic.IEnumerable`1[[ServiceCatalog.Domain.Entity.Playstation.PlaystationArea, ServiceCatalog.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2023-12-22 17:12:44.291 +05:00 [INF] Executed action ServiceCatalog.Controllers.PlaystationAreaController.GetPlaystationPage (ServiceCatalog) in 885.1697ms
+2023-12-22 17:12:44.293 +05:00 [INF] Executed endpoint 'ServiceCatalog.Controllers.PlaystationAreaController.GetPlaystationPage (ServiceCatalog)'
+2023-12-22 17:12:44.298 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/api/PlaystationArea/GetPlaystationPage?page=1&pageSize=12 - 200 null application/json; charset=utf-8 947.0843ms
+2023-12-22 17:12:56.956 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/api/PlaystationArea/GetAllPlaystation - null null
+2023-12-22 17:12:56.961 +05:00 [INF] Executing endpoint 'ServiceCatalog.Controllers.PlaystationAreaController.GetAllPlaystation (ServiceCatalog)'
+2023-12-22 17:12:56.966 +05:00 [INF] Route matched with {action = "GetAllPlaystation", controller = "PlaystationArea"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllPlaystation() on controller ServiceCatalog.Controllers.PlaystationAreaController (ServiceCatalog).
+2023-12-22 17:12:56.983 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT b."Id", b."CloseTime", b."Descryption", b."Discriminator", b."Location", b."Name", b."OpenTime", b."PhoneNumber", b."UserId"
+FROM "Base" AS b
+WHERE b."Discriminator" = 'PlaystationArea'
+2023-12-22 17:12:56.988 +05:00 [INF] Executing OkObjectResult, writing value of type 'Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1[[ServiceCatalog.Domain.Entity.Playstation.PlaystationArea, ServiceCatalog.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-12-22 17:12:57.005 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT b."Id", b."CloseTime", b."Descryption", b."Discriminator", b."Location", b."Name", b."OpenTime", b."PhoneNumber", b."UserId"
+FROM "Base" AS b
+WHERE b."Discriminator" = 'PlaystationArea'
+2023-12-22 17:12:57.014 +05:00 [INF] Executed action ServiceCatalog.Controllers.PlaystationAreaController.GetAllPlaystation (ServiceCatalog) in 47.4687ms
+2023-12-22 17:12:57.016 +05:00 [INF] Executed endpoint 'ServiceCatalog.Controllers.PlaystationAreaController.GetAllPlaystation (ServiceCatalog)'
+2023-12-22 17:12:57.018 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/api/PlaystationArea/GetAllPlaystation - 200 null application/json; charset=utf-8 62.1421ms
+2023-12-22 17:13:06.785 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/api/PlaystationArea/GetPlaystationPage?page=1&pageSize=1 - null null
+2023-12-22 17:13:06.787 +05:00 [INF] Executing endpoint 'ServiceCatalog.Controllers.PlaystationAreaController.GetPlaystationPage (ServiceCatalog)'
+2023-12-22 17:13:06.788 +05:00 [INF] Route matched with {action = "GetPlaystationPage", controller = "PlaystationArea"}. Executing controller action with signature System.Threading.Tasks.Task`1[ServiceCatalog.Domain.Entity.ResponseModel.ResponseModel`1[System.Collections.Generic.IEnumerable`1[ServiceCatalog.Domain.Entity.Playstation.PlaystationArea]]] GetPlaystationPage(Int32, Int32) on controller ServiceCatalog.Controllers.PlaystationAreaController (ServiceCatalog).
+2023-12-22 17:13:06.841 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM "Base" AS b
+WHERE b."Discriminator" = 'PlaystationArea'
+2023-12-22 17:13:06.844 +05:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT b."Id", b."CloseTime", b."Descryption", b."Discriminator", b."Location", b."Name", b."OpenTime", b."PhoneNumber", b."UserId"
+FROM "Base" AS b
+WHERE b."Discriminator" = 'PlaystationArea'
+LIMIT @__p_0 OFFSET @__p_0
+2023-12-22 17:13:06.847 +05:00 [INF] Executing ObjectResult, writing value of type 'ServiceCatalog.Domain.Entity.ResponseModel.ResponseModel`1[[System.Collections.Generic.IEnumerable`1[[ServiceCatalog.Domain.Entity.Playstation.PlaystationArea, ServiceCatalog.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2023-12-22 17:13:06.848 +05:00 [INF] Executed action ServiceCatalog.Controllers.PlaystationAreaController.GetPlaystationPage (ServiceCatalog) in 57.2207ms
+2023-12-22 17:13:06.850 +05:00 [INF] Executed endpoint 'ServiceCatalog.Controllers.PlaystationAreaController.GetPlaystationPage (ServiceCatalog)'
+2023-12-22 17:13:06.851 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/api/PlaystationArea/GetPlaystationPage?page=1&pageSize=1 - 200 null application/json; charset=utf-8 66.0478ms
+2023-12-22 17:13:45.063 +05:00 [INF] Now listening on: https://localhost:7050
+2023-12-22 17:13:45.077 +05:00 [INF] Now listening on: http://localhost:5253
+2023-12-22 17:13:45.079 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-12-22 17:13:45.079 +05:00 [INF] Hosting environment: Development
+2023-12-22 17:13:45.080 +05:00 [INF] Content root path: C:\Users\suoki\Desktop\Real\ServiceCatalog
+2023-12-22 17:13:45.570 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/swagger/index.html - null null
+2023-12-22 17:13:45.646 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/swagger/index.html - 200 null text/html;charset=utf-8 75.7538ms
+2023-12-22 17:13:45.680 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/_framework/aspnetcore-browser-refresh.js - null null
+2023-12-22 17:13:45.680 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/_vs/browserLink - null null
+2023-12-22 17:13:45.684 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/_framework/aspnetcore-browser-refresh.js - 200 13764 application/javascript; charset=utf-8 3.9419ms
+2023-12-22 17:13:45.699 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/_vs/browserLink - 200 null text/javascript; charset=UTF-8 19.6661ms
+2023-12-22 17:13:45.838 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/swagger/v1/swagger.json - null null
+2023-12-22 17:13:45.910 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 72.3651ms
+2023-12-22 17:13:50.915 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7050/api/PlaystationArea/GetPlaystationPage?page=1&pageSize=1 - null null
+2023-12-22 17:13:50.922 +05:00 [INF] Executing endpoint 'ServiceCatalog.Controllers.PlaystationAreaController.GetPlaystationPage (ServiceCatalog)'
+2023-12-22 17:13:50.939 +05:00 [INF] Route matched with {action = "GetPlaystationPage", controller = "PlaystationArea"}. Executing controller action with signature System.Threading.Tasks.Task`1[ServiceCatalog.Domain.Entity.ResponseModel.ResponseModel`1[System.Collections.Generic.IEnumerable`1[ServiceCatalog.Domain.Entity.Playstation.PlaystationArea]]] GetPlaystationPage(Int32, Int32) on controller ServiceCatalog.Controllers.PlaystationAreaController (ServiceCatalog).
+2023-12-22 17:13:51.626 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM "Base" AS b
+WHERE b."Discriminator" = 'PlaystationArea'
+2023-12-22 17:13:51.646 +05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2023-12-22 17:13:51.649 +05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2023-12-22 17:13:51.677 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT b."Id", b."CloseTime", b."Descryption", b."Discriminator", b."Location", b."Name", b."OpenTime", b."PhoneNumber", b."UserId"
+FROM "Base" AS b
+WHERE b."Discriminator" = 'PlaystationArea'
+LIMIT @__p_0 OFFSET @__p_0
+2023-12-22 17:13:51.685 +05:00 [INF] Executing ObjectResult, writing value of type 'ServiceCatalog.Domain.Entity.ResponseModel.ResponseModel`1[[System.Collections.Generic.IEnumerable`1[[ServiceCatalog.Domain.Entity.Playstation.PlaystationArea, ServiceCatalog.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2023-12-22 17:13:51.703 +05:00 [INF] Executed action ServiceCatalog.Controllers.PlaystationAreaController.GetPlaystationPage (ServiceCatalog) in 759.4298ms
+2023-12-22 17:13:51.705 +05:00 [INF] Executed endpoint 'ServiceCatalog.Controllers.PlaystationAreaController.GetPlaystationPage (ServiceCatalog)'
+2023-12-22 17:13:51.711 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7050/api/PlaystationArea/GetPlaystationPage?page=1&pageSize=1 - 200 null application/json; charset=utf-8 795.6816ms

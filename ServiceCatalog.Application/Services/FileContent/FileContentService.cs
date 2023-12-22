@@ -32,13 +32,13 @@ namespace ServiceCatalog.Application.Services.FileContent
 
             return formFile;
         }
-        public async Task<string> Upload(IFormFile formFile, int baseId, int categoryId)
+        public async Task<string> Upload(IFormFile formFile, int baseId)
         {
             if (formFile == null || formFile.Length == 0) return "";
 
             string uniqueFileName = $"{Guid.NewGuid()}_{formFile.FileName}";
 
-            string uploadsFolder = @"C: \Users\suoki\Desktop\Real\ServiceCatalog\wwwroot";
+            string uploadsFolder = Path.Combine(_webHostEnvironment.ContentRootPath,"Uploads");
 
             string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 

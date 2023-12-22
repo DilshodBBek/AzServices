@@ -30,6 +30,7 @@ namespace Payment.UI.Controllers
             }
             return BadRequest("");
         }
+
         [HttpGet]
         public async Task<IActionResult> DownloadFile(string path)
         {
