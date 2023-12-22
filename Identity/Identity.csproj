@@ -23,6 +23,12 @@
     <ProjectReference Include="..\Identity.Domain\Identity.Domain.csproj" />
     <ProjectReference Include="..\Identity.Infrastructure\Identity.Infrastructure.csproj" />
   </ItemGroup>
+	<ItemGroup>
+		<Protobuf Include="Protos\getlocation.proto" GrpcServices="Both" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Grpc.AspNetCore" Version="2.57.0" />
+	</ItemGroup>
 
   <ItemGroup>
     <Folder Include="logs\" />
