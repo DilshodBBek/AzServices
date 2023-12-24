@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\ServiceCatalog.Application\ServiceCatalog.Application.csproj" />
   </ItemGroup>
 
