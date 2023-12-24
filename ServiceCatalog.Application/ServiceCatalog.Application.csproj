@@ -11,7 +11,7 @@
     <EmbeddedResource Remove="Services\Playstation\**" />
     <None Remove="Services\Playstation\**" />
   </ItemGroup>
-
+	
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\ServiceCatalog.Domain\ServiceCatalog.Domain.csproj" />

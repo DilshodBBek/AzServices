@@ -1,0 +1,19 @@
+syntax = "proto3";
+option csharp_namespace = "Protos";
+package greet;
+// The greeting service definition.
+service Integrator {
+  // Sends a greeting
+  rpc GetStatus (Request) returns (Response);
+}
+message Request {
+repeated int ids=1;
+}
+
+message Response {
+repeated status statuses = 1;
+}
+message status{
+	int ids=1;
+	string status=1;
+}
