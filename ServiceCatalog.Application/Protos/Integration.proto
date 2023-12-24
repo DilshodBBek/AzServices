@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option csharp_namespace = "ServiceCatalog.Application";
+
+package greet;
+
+// The greeting service definition.
+service GetStatusOfBooking{
+	rpc GetStatus(Request) returns Response;
+}
+
+message Request {
+  string name = 1;
+}
+
+message Response {
+  string message = 1;
+}
