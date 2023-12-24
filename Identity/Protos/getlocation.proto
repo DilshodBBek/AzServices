@@ -1,7 +1,6 @@
 syntax = "proto3";
 
 option csharp_namespace = "Identity.Protos";
-
 service AuthService {
   rpc LoginAsync (Credential) returns (ResponseModelForall);
   rpc RefreshTokenAsync (Token) returns (ResponseModelForall);

@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option csharp_namespace = "Protos";
+service AuthService {
+  rpc LoginAsync (Credential) returns (ResponseModelForall);
+}
+
+message Credential {
+  string Username = 1;
+  string Password = 2;
+}
+
+message ResponseModelForall {
+  int32 StatusCode = 1;
+  string Error = 2;
+  Token Result = 3;
+}
+
+
+message Token {
+  string AccessToken = 1;
+  string RefreshToken = 2;
+  int64 ExpireTime = 3;
+}

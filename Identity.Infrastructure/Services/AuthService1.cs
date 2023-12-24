@@ -18,8 +18,8 @@ using System.Text;
 namespace Identity.Infrastructure.Services
 {
 
-public class AuthService : IAuthService
-{   
+public class AuthService1 : IAuthService
+    {   
     private readonly ITokenService _tokenService;
     private readonly ApplicationDbcontext _mydbcontext;
     private readonly IMapper _mapper;
@@ -29,9 +29,9 @@ public class AuthService : IAuthService
     private readonly  RoleManager<Role> _roleManager;
     private readonly ApplicationDbcontext _dbcontext;
     private readonly IUrlHelperFactory _urlHelperFactory;
-        private readonly ILogger<AuthService> _logger;
+        private readonly ILogger<AuthService1> _logger;
 
-        public AuthService(ITokenService tokenService, ApplicationDbcontext mydbcontext, IMapper mapper, IConfiguration configuration, UserManager<ApplicationUser> userManager, RoleManager<Role> roleManager, ApplicationDbcontext dbcontext, IUrlHelperFactory urlHelperFactory, ILogger<AuthService> logger)
+        public AuthService1(ITokenService tokenService, ApplicationDbcontext mydbcontext, IMapper mapper, IConfiguration configuration, UserManager<ApplicationUser> userManager, RoleManager<Role> roleManager, ApplicationDbcontext dbcontext, IUrlHelperFactory urlHelperFactory, ILogger<AuthService1> logger)
         {
             _tokenService = tokenService;
             _mydbcontext = mydbcontext;
